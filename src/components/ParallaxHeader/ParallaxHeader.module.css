@@ -1,0 +1,5 @@
+.parallax-container {
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+}
