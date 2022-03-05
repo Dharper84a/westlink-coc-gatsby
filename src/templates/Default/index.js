@@ -1,9 +1,12 @@
 import React from 'react'
 import {GatsbyImage} from 'gatsby-plugin-image'
-import * as styles from './styles.module.css';
+import * as styles from './styles.module.scss';
 
 // Templates
 import Website from '../Website';
+import Footer from '../Footer';
+import Header from '../Header';
+
 
 const TemplateDefault = (props) => {
   return (
@@ -12,7 +15,10 @@ const TemplateDefault = (props) => {
       description={props.description}
       image={props.image}
     >
-      <main className={styles.page}>{props.children}</main>
+      <Header />
+      <main className={styles.page}>
+        {props.children}</main>
+      <Footer />
     </Website>
     
   )
