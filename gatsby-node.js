@@ -1,3 +1,4 @@
+const path = require('path')
 const { GraphQLString } = require('gatsby/graphql')
 
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
@@ -10,16 +11,47 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
     }
   }
 
+  if(type.name === 'ContentfulPageDefault') {
+    return {
+      linkedItems: {
+        type: GraphQLString,
+        resolve: () => { return ' ' }
+      },
+      socialImage: {
+        type: GraphQLString,
+        resolve: () => { return ' ' }
+      }
+    }
+  }
+
   // by default return empty object
   return {}
 }
 
-exports.createPages = async ({ actions }) => {
-  const { createPage } = actions
-  createPage({
-    path: "/using-dsg",
-    component: require.resolve("./src/templates/using-dsg.js"),
-    context: {},
-    defer: true,
+exports.createPages = async ({ graphql, actions }) => {
+  const {createPage } = actions
+  const defaultPageTemplate = path.resolve(`src/templates/defaultPage/defaultPage.js`)
+  const result = await graphql(`
+    query{
+      allContentfulPageDefault {
+        edges {
+          node {
+            slug
+            title
+          }
+        }
+      }
+    }
+  `)
+  
+  result.data.allContentfulPageDefault.edges.forEach(edge => {
+    createPage({
+      path: `${edge.node.slug}`,
+      component: defaultPageTemplate,
+      context: {
+        title: edge.node.title
+      }
+    })
   })
+
 }

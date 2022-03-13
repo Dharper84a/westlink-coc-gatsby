@@ -116,13 +116,13 @@ const options = {
   },
 }
 
-const ContentfulRichTech = ({ richText }) => {
+const ContentfulRichText = ({ richText }) => {
   return <div>{renderRichText(richText, options)}</div>
 }
 
-ContentfulRichTech.propTypes = {
+ContentfulRichText.propTypes = {
   /** Contentful rich text */
   richText: PropTypes.any.isRequired,
 }
 
-export default ContentfulRichTech
+export default ContentfulRichText
