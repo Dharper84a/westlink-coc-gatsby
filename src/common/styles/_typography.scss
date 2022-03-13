@@ -24,6 +24,8 @@ h5, h6 {
 p {
   @include font-family('sans');
   @include font-size('default');
+  line-height: 32px;
+  letter-spacing: 0.0325rem;
 }
 
 strong {
