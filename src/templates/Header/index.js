@@ -1,12 +1,16 @@
-import React from "react"
+import React, {useState} from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
 // Styles
 import * as styles from "./styles.module.scss"
 
 const Header = props => {
+  const [isOpen, setIsOpen] = useState(false)
   const mobileIcon = "../../images/icons/chevron-left.svg"
 
+  const onMobileButtonClickHandler = () => {
+    setIsOpen(!isOpen)
+  }
   return (
     <div className={styles.wrapper}>
       <header className={styles.siteHeader}>
@@ -20,13 +24,14 @@ const Header = props => {
 
         <nav className={styles.navigation}>
           <div className={styles.mobileNavigation}>
-            <button>
+            <button onClick={onMobileButtonClickHandler}>
               <StaticImage
                 src={mobileIcon}
                 alt="Mobile navigation icon"
                 width={32}
               />
             </button>
+            { isOpen &&
             <div className={styles.mobileDrawer}>
               <div className={styles.mobileDrawerGrid}>
                 <div>
@@ -36,13 +41,13 @@ const Header = props => {
                   <nav>
                     <ul>
                       <li>
-                        <a href="/about/our-beliefs">Our Beliefs</a>
+                        <a href="/our-beliefs">Our Beliefs</a>
                       </li>
                       <li>
-                        <a href="/about/ministers-and-staff">Ministers and Staff</a>
+                        <a href="/ministers-and-staff">Ministers and Staff</a>
                       </li>
                       <li>
-                        <a href="/about/missions">Missions</a>
+                        <a href="/missions">Missions</a>
                       </li>
                     </ul>
                   </nav>
@@ -54,13 +59,13 @@ const Header = props => {
                   <nav>
                     <ul>
                       <li>
-                        <a href="/connect/visit-westlink">Visit Westlink</a>
+                        <a href="/visit-westlink">Visit Westlink</a>
                       </li>
                       <li>
-                        <a href="/connect/becoming-a-member">Becoming a Member</a>
+                        <a href="/becoming-a-member">Becoming a Member</a>
                       </li>
                       <li>
-                        <a href="/connect/groups-and-ministries">
+                        <a href="/groups-and-ministries">
                           Groups and Ministries
                         </a>
                       </li>
@@ -74,13 +79,13 @@ const Header = props => {
                   <nav>
                     <ul>
                       <li>
-                        <a href="/media/watch-live">Watch Live</a>
+                        <a href="/watch-live">Watch Live</a>
                       </li>
                       <li>
-                        <a href="/media/podcasts">Podcasts</a>
+                        <a href="/podcasts">Podcasts</a>
                       </li>
                       <li>
-                        <a href="/media/past-sermons">Past Sermons</a>
+                        <a href="/past-sermons">Past Sermons</a>
                       </li>
                     </ul>
                   </nav>
@@ -90,19 +95,20 @@ const Header = props => {
                 </div>
               </div>
             </div>
+            }
           </div>
           <ul className={styles.desktopNavigation}>
             <li>
               About
               <ul>
                 <li>
-                  <a href="/about/our-beliefs">Our Beliefs</a>
+                  <a href="/our-beliefs">Our Beliefs</a>
                 </li>
                 <li>
-                  <a href="/about/ministers-and-staff">Ministers and Staff</a>
+                  <a href="/ministers-and-staff">Ministers and Staff</a>
                 </li>
                 <li>
-                  <a href="/about/missions">Missions</a>
+                  <a href="/missions">Missions</a>
                 </li>
               </ul>
             </li>
@@ -110,13 +116,13 @@ const Header = props => {
               Connect
               <ul>
                 <li>
-                  <a href="/connect/visit-westlink">Visit Westlink</a>
+                  <a href="/visit-westlink">Visit Westlink</a>
                 </li>
                 <li>
-                  <a href="/connect/becoming-a-member">Becoming a Member</a>
+                  <a href="/becoming-a-member">Becoming a Member</a>
                 </li>
                 <li>
-                  <a href="/connect/groups-and-ministries">
+                  <a href="/groups-and-ministries">
                     Groups and Ministries
                   </a>
                 </li>
@@ -126,13 +132,13 @@ const Header = props => {
               Media
               <ul>
                 <li>
-                  <a href="/media/watch-live">Watch Live</a>
+                  <a href="/watch-live">Watch Live</a>
                 </li>
                 <li>
-                  <a href="/media/podcasts">Podcasts</a>
+                  <a href="/podcasts">Podcasts</a>
                 </li>
                 <li>
-                  <a href="/media/past-sermons">Past Sermons</a>
+                  <a href="/past-sermons">Past Sermons</a>
                 </li>
               </ul>
             </li>

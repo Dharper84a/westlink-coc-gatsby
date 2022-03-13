@@ -1,12 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { getImage } from "gatsby-plugin-image"
 
-import ContentfulRichText from '../../components/ContentTypes/RichText'
+import ContentfulRichText from "../../components/ContentTypes/RichText"
 
 import Website from "../Website"
 import Header from "../Header"
 import Footer from "../Footer"
+
+import { DefaultPageImage } from "../../components/DefaultPageImage/DefaultPageImage"
 
 import * as styles from "./styles.module.scss"
 
@@ -14,16 +16,18 @@ const defaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
   console.log(data)
 
   const desktopImage = getImage(data.featuredImageDesktop)
+  const mobileImage = getImage(data.featuredImageMobile)
 
   return (
     <Website>
       <Header />
       <main className={styles.pageContent}>
         <header>
-          <GatsbyImage
-            image={desktopImage}
+          <DefaultPageImage
+            desktopImage={desktopImage}
+            mobileImage={mobileImage}
             alt={data.featuredImageDesktop.description}
-            backgroundColor= '#f2f2f2'
+            backgroundColor="#f2f2f2"
           />
         </header>
 
@@ -32,7 +36,6 @@ const defaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
           <div>
             <ContentfulRichText richText={data.pageContent} />
           </div>
-          
         </section>
 
         <aside>LINKED ITEMS</aside>

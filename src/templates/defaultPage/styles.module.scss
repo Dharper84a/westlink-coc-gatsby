@@ -3,22 +3,34 @@
 .pageContent {
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
+  width: 100%;
   max-width: 1366px;
   margin: 160px auto;
-  padding: 0 3rem;
+  padding: 0 1rem;
   font-family: $sans;
+  @include respond-to('small') {
+    flex-wrap: wrap;
+    width: 90%;
+    padding: 0 3rem;
+  }
   header {
-    width: 33%;
-    max-width: 600px;
+    width: 100%;
+    height: auto;
     margin: 0 0 3rem 0;
-    padding: 0 2rem 0 0;
+    @include respond-to('small') {
+      width: 33%;
+      max-width: 600px;
+      padding: 0 2rem 0 0;
+    }
     div {
       border-radius: 1rem;
     }
   }
   section {
-    width: 66%;
+    width: 100%;
+    @include respond-to('small') {
+      width: 66%;
+    }
     h1 {
       margin: 0 0 1rem 0;
     }
