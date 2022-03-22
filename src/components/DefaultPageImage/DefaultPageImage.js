@@ -11,8 +11,6 @@ export const DefaultPageImage = (props) => {
     var _image = width > 768 ? props.desktopImage : props.mobileImage
     setImage(_image)
   }, [width, props.desktopImage, props.mobileImage])
-  console.log(width);
-  // const image = width > 768 ? props.desktopImage : props.mobileImage
 
   return (
     <React.Fragment>
