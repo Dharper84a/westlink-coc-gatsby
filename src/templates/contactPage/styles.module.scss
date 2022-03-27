@@ -9,7 +9,6 @@
   padding: 0 1rem;
   font-family: $sans;
   @include respond-to('small') {
-    flex-wrap: wrap;
     justify-content: space-between;
     width: 90%;
     padding: 0 3rem;
@@ -28,25 +27,53 @@
     }
   }
   section {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    @include respond-to('small') {
-      width: calc(66% - 300px);
+    @include respond-to('medium') {
+      width: 66%;
+      padding-right: 2rem;
     }
     h1 {
+      width: 100%;
       margin: 0 0 1rem 0;
+      font-size: 2rem;
     }
     div {
       max-width: 800px;
     }
+    ul {
+      @include respond-to('xsmall') {
+        width: 50%;
+      }
+      @include respond-to('medium') {
+        width: 100%;
+      }
+    }
+    form {
+      width: 100%;
+      margin-top: 3rem;
+      @include respond-to('xsmall') {
+        width: 50%;
+        margin-top: 0;
+      }
+      @include respond-to('medium') {
+        width: 100%;
+        max-width: 500px;
+      }
+    }
+
   }
-  
-  form {
-    margin-top: 3rem;
+
+  aside {
+    width: 100%;
+    @include respond-to('medium') {
+      width: 33%;
+    }
   }
 }
 
 .accessHidden {
-  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;

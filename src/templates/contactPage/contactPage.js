@@ -17,9 +17,9 @@ const ContactPageTemplate = (props) => {
     position: 'relative',
     width: '100%',
     height: '100%',
-    minHeight: '600px',
+    minHeight: '400px',
     minWidth: '300px',
-    maxWidth: '500px'
+    maxWidth: '800px'
   };
 
   const onEmailChangeHandler = (e) => {
@@ -35,7 +35,6 @@ const ContactPageTemplate = (props) => {
   }
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log('Submit Message')
 
     setShowMessage(true);
 
