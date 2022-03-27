@@ -1,11 +1,24 @@
 import React from "react"
-import { getImage } from "gatsby-plugin-image"
+import { Map, InforWindow, Marker, GoogleApiWrapper } from "google-maps-react"
 
 import * as styles from "./styles.module.scss"
 
-const ContactPageTemplate = props => {
+
+const ContactPageTemplate = (props) => {
+  const position = { lat: props.data.address.lat, lng: props.data.address.lon };
+ 
+  const containerStyle = {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    minHeight: '600px',
+    minWidth: '300px',
+    maxWidth: '500px'
+  };
+
   return (
     <main className={styles.pageContent}>
+   
       <section itemscope itemtype="https://schema.org/Organization">
         <h2 itemprop="name">Westlink Church of Christ</h2>
         <ul>
@@ -33,10 +46,28 @@ const ContactPageTemplate = props => {
       </section>
 
       <aside>
-        
+        <Map 
+          google={props.google} 
+          zoom={14} 
+          initialCenter={position}
+          // style={style}
+          scrollwheel={false}
+          draggable={false}
+          keyboardShortcuts={false}
+          disableDoubleClickZoome={true}
+          containerStyle={containerStyle}
+        >
+          <Marker
+            title="Westlink Church of Christ"
+            position={position} />
+
+        </Map>
       </aside>
     </main>
   )
 }
 
-export default ContactPageTemplate
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyCMTSxkxHnoFHFJsC3l2fi8xcBC5aGbok8'
+})(ContactPageTemplate)
+// export default ContactPageTemplate
