@@ -10,6 +10,7 @@
   font-family: $sans;
   @include respond-to('small') {
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 90%;
     padding: 0 3rem;
   }
@@ -29,7 +30,7 @@
   section {
     width: 100%;
     @include respond-to('small') {
-      width: 66%;
+      width: calc(66% - 300px);
     }
     h1 {
       margin: 0 0 1rem 0;
@@ -38,4 +39,43 @@
       max-width: 800px;
     }
   }
+  
+  form {
+    margin-top: 3rem;
+  }
+}
+
+.accessHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+.formInput {
+  margin: 1rem 0;
+  * {
+    width: 100%;
+  }
+  label {
+    display: block;
+  }
+  input, textarea, select {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ababab;
+  }
+}
+
+.notice {
+  max-width: 400px;
+  margin: 0;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: $pastelGreen;
 }
