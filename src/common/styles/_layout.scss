@@ -12,3 +12,15 @@ blockquote {
   background-color: $lightGray;
   border-left: 0.5rem solid $pastelGreen;
 }
+address {
+  margin: 1rem 0;
+  font-style: normal;
+}
+
+a {
+  color: $mediumBlue;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
