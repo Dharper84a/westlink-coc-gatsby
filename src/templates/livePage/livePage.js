@@ -42,7 +42,7 @@ const LivePageTemplate = (props) => {
       setViewerHeight(viewerWidth * 0.5625);
       setIsLoading(false);
     }
-  });
+  },[streamViewerHeight, streamViewerWidth, viewerWidth]);
 
   useEffect(() => {
     setViewerSizes();

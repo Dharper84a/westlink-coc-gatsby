@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { Map, InforWindow, Marker, GoogleApiWrapper } from "google-maps-react"
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react"
 
 import * as styles from "./styles.module.scss"
 
@@ -68,7 +68,7 @@ const ContactPageTemplate = (props) => {
               <span itemProp="postalCode">67212</span>
               <br />
             </address>
-            <a href="#" title="Get directions to Westlink Church of Christ">Directions</a>
+            {/* <a href="#" title="Get directions to Westlink Church of Christ">Directions</a> */}
           </li>
         </ul>
 
