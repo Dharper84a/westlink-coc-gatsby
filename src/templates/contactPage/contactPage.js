@@ -68,7 +68,7 @@ const ContactPageTemplate = (props) => {
               <span itemProp="postalCode">67212</span>
               <br />
             </address>
-            {/* <a href="#" title="Get directions to Westlink Church of Christ">Directions</a> */}
+            <a href="https://goo.gl/maps/UHi39pNBDV6Q9HhH8" title="Get directions to Westlink Church of Christ" target="_blank" rel="noreferrer">Directions</a>
           </li>
         </ul>
 

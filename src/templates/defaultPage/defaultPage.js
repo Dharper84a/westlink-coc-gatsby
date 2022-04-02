@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import { getImage } from "gatsby-plugin-image"
 
@@ -21,24 +22,38 @@ const defaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
   return (
     <Website>
       <Header />
-      <main className={styles.pageContent}>
-        <header>
-          <DefaultPageImage
-            desktopImage={desktopImage}
-            mobileImage={mobileImage}
-            alt={data.featuredImageDesktop.description}
-            backgroundColor="#f2f2f2"
-          />
-        </header>
+        <Helmet>
+          <title>{data?.metaPageTitle}</title>
+          <meta name="description" content={data?.metaPageDescription} />
+        </Helmet>
 
-        <section>
-          <h1>{data.title}</h1>
-          <div>
-            <ContentfulRichText richText={data.pageContent} />
-          </div>
-        </section>
+        <main className={styles.pageContent}>
+        {data &&
+          <>
+            <header>
+              <DefaultPageImage
+                desktopImage={desktopImage}
+                mobileImage={mobileImage}
+                alt={data.featuredImageDesktop?.description}
+                backgroundColor="#f2f2f2"
+              />
+            </header>
 
-        {/* <aside>LINKED ITEMS</aside> */}
+            <section>
+              <h1>{data.title}</h1>
+              <div>
+                <ContentfulRichText richText={data.pageContent} />
+              </div>
+            </section>
+
+            {/* <aside>LINKED ITEMS</aside> */}
+          </>
+        }
+
+        {!data && 
+          <p>Unable to load page</p>
+        }
+        
       </main>
       <Footer />
     </Website>

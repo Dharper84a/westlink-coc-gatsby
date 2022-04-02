@@ -40,8 +40,6 @@ const options = {
     [INLINES.HYPERLINK]: (node, children) => (
       <a
         href={node.data.uri}
-        target="_blank"
-        rel="noreferrer"
       >
         {children}
       </a>
