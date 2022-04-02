@@ -83,6 +83,7 @@ const LivePageTemplate = (props) => {
             })
           }
         </div>
+        <a href="/past-sermons" title="View more past sermons" className="linkButton">More Past Sermons</a>
       </section>
     </main>
   )

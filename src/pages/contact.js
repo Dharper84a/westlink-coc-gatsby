@@ -7,12 +7,16 @@ import Header from "../templates/Header"
 import Footer from "../templates/Footer"
 
 import ContactPageTemplate from "../templates/contactPage/contactPage"
+import { Helmet } from "react-helmet"
 
 const ContactPage = ({ data: {contentfulPageContact: data} }) => {
   console.log(data)
 
   return (
     <Website>
+      <Helmet>
+        <title>Contact - Westlink Church of Christ</title>
+      </Helmet>
       <Header />
         <ContactPageTemplate data={data} />
       <Footer />

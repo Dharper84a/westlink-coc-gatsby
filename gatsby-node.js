@@ -1,26 +1,32 @@
-const path = require('path')
-const { GraphQLString } = require('gatsby/graphql')
+const path = require("path")
+const { GraphQLString } = require("gatsby/graphql")
 
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
-  if (type.name === 'ContentfulSiteMeta') {
+  if (type.name === "ContentfulSiteMeta") {
     return {
       siteDescription: {
         type: GraphQLString,
-        resolve: () => { return ' ' }
-      }
+        resolve: () => {
+          return " "
+        },
+      },
     }
   }
 
-  if(type.name === 'ContentfulPageDefault') {
+  if (type.name === "ContentfulPageDefault") {
     return {
       linkedItems: {
         type: GraphQLString,
-        resolve: () => { return ' ' }
+        resolve: () => {
+          return " "
+        },
       },
       socialImage: {
         type: GraphQLString,
-        resolve: () => { return ' ' }
-      }
+        resolve: () => {
+          return " "
+        },
+      },
     }
   }
 
@@ -28,11 +34,36 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   return {}
 }
 
+// exports.createPages = async function({ actions, graphql}) {
+//   const {data} = await graphql(`
+//     query {
+//       allContentfulPageDefault {
+//         edges {
+//           node {
+//             slug
+//           }
+//         }
+//       }
+//     }
+//   `)
+
+//   data.allContentfulPageDefault.edges.forEach(edge => {
+//     const slug = edge.node.slug;
+//     actions.createPage({
+//       path: slug,
+//       component: require.resolver('./src/templates/defaultPage/defaultPage.js'),
+//       context: {slug: slug},
+//     })
+//   })
+// }
+
 exports.createPages = async ({ graphql, actions }) => {
-  const {createPage } = actions
-  const defaultPageTemplate = path.resolve(`src/templates/defaultPage/defaultPage.js`)
-  const result = await graphql(`
-    query{
+  const { createPage } = actions
+  const defaultPageTemplate = path.resolve(
+    `src/templates/defaultPage/defaultPage.js`
+  )
+  const defaultPageResult = await graphql(`
+    query {
       allContentfulPageDefault {
         edges {
           node {
@@ -43,20 +74,12 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  
-  result.data.allContentfulPageDefault.edges.forEach(edge => {
-    createPage({
-      path: `${edge.node.slug}`,
-      component: defaultPageTemplate,
-      context: {
-        title: edge.node.title
-      }
-    })
-  })
 
-  const peoplePageTemplate = path.resolve(`src/templates/peoplePage/peoplePage.js`)
-  const peopleResult = await graphql(`
-    query{
+  const peoplePageTemplate = path.resolve(
+    `src/templates/peoplePage/peoplePage.js`
+  )
+  const peoplePageResult = await graphql(`
+    query {
       allContentfulPagePeople {
         edges {
           node {
@@ -67,16 +90,26 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  
-  peopleResult.data.allContentfulPagePeople.edges.forEach(edge => {
+
+  defaultPageResult.data.allContentfulPageDefault.edges.forEach(edge => {
+    createPage({
+      path: `${edge.node.slug}`,
+      component: defaultPageTemplate,
+      context: {
+        title: edge.node.title,
+        slug: edge.node.slug,
+      },
+    })
+  })
+
+  peoplePageResult.data.allContentfulPagePeople.edges.forEach(edge => {
     createPage({
       path: `${edge.node.slug}`,
       component: peoplePageTemplate,
       context: {
-        title: edge.node.title
-      }
+        title: edge.node.title,
+        slug: edge.node.slug,
+      },
     })
   })
-
-
 }

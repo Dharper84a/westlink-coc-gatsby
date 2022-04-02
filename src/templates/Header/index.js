@@ -58,9 +58,9 @@ const Header = props => {
                   </header>
                   <nav>
                     <ul>
-                      <li>
+                      {/* <li>
                         <a href="/visit-westlink">Visit Westlink</a>
-                      </li>
+                      </li> */}
                       <li>
                         <a href="/becoming-a-member">Becoming a Member</a>
                       </li>
@@ -115,9 +115,9 @@ const Header = props => {
             <li>
               Connect
               <ul>
-                <li>
+                {/* <li>
                   <a href="/visit-westlink">Visit Westlink</a>
-                </li>
+                </li> */}
                 <li>
                   <a href="/becoming-a-member">Becoming a Member</a>
                 </li>

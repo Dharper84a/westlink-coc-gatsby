@@ -5,14 +5,14 @@ import Header from "../templates/Header"
 import Footer from "../templates/Footer"
 
 
-import LivePageTemplate from "../templates/livePage/livePage"
+import VideosPageTemplate from "../templates/videosPage/videosPage"
 
-const Live = ({data}) => {
+const PodCasts = ({data}) => {
 
   return (
     <Website>
       <Header />
-        <LivePageTemplate data={data?.allContentfulVideoSermons?.edges} />
+        <VideosPageTemplate title="Pod Casts" data={data?.allContentfulVideoSermons?.edges} />
       <Footer />
     </Website>
   );
@@ -20,7 +20,7 @@ const Live = ({data}) => {
 
 export const query = graphql`
   {
-    allContentfulVideoSermons(limit:3) {
+    allContentfulVideoSermons {
       edges {
         node {
           title
@@ -33,4 +33,4 @@ export const query = graphql`
   }
 `
 
-export default Live;
+export default PodCasts;
