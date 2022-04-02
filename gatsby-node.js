@@ -54,4 +54,29 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
+  const peoplePageTemplate = path.resolve(`src/templates/peoplePage/peoplePage.js`)
+  const peopleResult = await graphql(`
+    query{
+      allContentfulPagePeople {
+        edges {
+          node {
+            slug
+            title
+          }
+        }
+      }
+    }
+  `)
+  
+  peopleResult.data.allContentfulPagePeople.edges.forEach(edge => {
+    createPage({
+      path: `${edge.node.slug}`,
+      component: peoplePageTemplate,
+      context: {
+        title: edge.node.title
+      }
+    })
+  })
+
+
 }

@@ -1,0 +1,18 @@
+.personCard {
+  margin: 2rem 0;
+}
+.portrait {
+  & > div {
+    max-width: 200px !important;
+    border-radius: 1rem;
+  }
+  figcaption {
+    h3 {
+      margin: 0.5rem 0 0 0;
+    }
+  }
+}
+
+.bio {
+  margin: 0 0 3rem 0;
+}

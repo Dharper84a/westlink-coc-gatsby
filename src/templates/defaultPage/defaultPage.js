@@ -38,7 +38,7 @@ const defaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
           </div>
         </section>
 
-        <aside>LINKED ITEMS</aside>
+        {/* <aside>LINKED ITEMS</aside> */}
       </main>
       <Footer />
     </Website>

@@ -79,7 +79,7 @@ const Header = props => {
                   <nav>
                     <ul>
                       <li>
-                        <a href="/watch-live">Watch Live</a>
+                        <a href="/live">Watch Live</a>
                       </li>
                       <li>
                         <a href="/podcasts">Podcasts</a>
@@ -132,7 +132,7 @@ const Header = props => {
               Media
               <ul>
                 <li>
-                  <a href="/watch-live">Watch Live</a>
+                  <a href="/live">Watch Live</a>
                 </li>
                 <li>
                   <a href="/podcasts">Podcasts</a>
