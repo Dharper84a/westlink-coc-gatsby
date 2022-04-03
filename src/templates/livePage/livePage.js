@@ -4,6 +4,7 @@ import * as styles from "./styles.module.scss";
 
 
 import Video from '../../components/Video/Video';
+import { Helmet } from 'react-helmet';
 const LivePageTemplate = (props) => {
   const [isLive, setIsLive] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -46,9 +47,10 @@ const LivePageTemplate = (props) => {
 
   useEffect(() => {
     setViewerSizes();
+    isLiveHandler()
     let isLiveTimer = setInterval(() => {
-      isLiveHandler()
-    }, 1000);
+      // isLiveHandler()
+    }, 100);
 
     return () => { 
       clearInterval(isLiveTimer);
@@ -56,12 +58,16 @@ const LivePageTemplate = (props) => {
   }, [streamViewerHeight, streamViewerWidth, isLiveHandler, setViewerSizes])
   
   return (
+    <>
+    <Helmet>
+      <title>Watch Live - Westlink Church of Christ</title>
+    </Helmet>
     <main className={styles.pageContent} id="streamViewerWidth">
    
       <section className="stream">
         <h1>Westlink Church of Christ Live Stream</h1>
         {isLive && !isLoading &&
-        <Video videoId="5JTkoA3dQ1g" width={viewerWidth} height={viewerHeight} />
+        <Video videoId="TD-s-Ucwu_s" width={viewerWidth} height={viewerHeight} />
         }
         {isLive && isLoading && 
         <div className={styles.streamPlaceholder}>
@@ -86,6 +92,7 @@ const LivePageTemplate = (props) => {
         <a href="/past-sermons" title="View more past sermons" className="linkButton">More Past Sermons</a>
       </section>
     </main>
+    </>
   )
 }
 

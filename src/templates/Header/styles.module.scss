@@ -16,7 +16,7 @@
   justify-content: space-between;
   width: 100%;
   margin: 0 auto;
-  padding-left: 2.5vw;
+  padding-left: 1rem;
   @include respond-to('small') {
     width: 85vw;
   }
@@ -156,8 +156,59 @@
   align-items: center;
   span {
     padding-left: 1rem;
-    font-size: 1.5rem;
+    padding-right: 1rem;
+    font-size: 1.125rem;
     font-family: $sans;
     color: $darkGray;
+    @include respond-to('xsmall') {
+      font-size: 1.5rem;
+    }
+    @include respond-to('small') {
+      display: none;
+    }
+    @include respond-to('medium') {
+      display: initial;
+      font-size: 1.125rem;
+    }
+    @include respond-to('large') {
+      font-size: 1.5rem;
+    }
+    a {
+      color: $darkGray;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+.isLiveLink {
+  a {
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    background: $red;
+    color: $white !important;
+    border: 2px solid $red;
+    border-radius: 0.5rem;
+    &:hover {
+      background: $white;
+      color: $red !important;
+      text-decoration: none !important;
+    }
+  }
+}
+
+.isLiveDonate {
+  a {
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    background: $green;
+    color: $white !important;
+    border: 2px solid $green;
+    border-radius: 0.5rem;
+    &:hover {
+      background: $white;
+      color: $green !important;
+      text-decoration: none !important;
+    }
   }
 }

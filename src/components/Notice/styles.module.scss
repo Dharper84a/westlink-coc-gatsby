@@ -1,0 +1,16 @@
+@import '../../common/styles/theme';
+
+
+.noticeBox {
+  padding: 1rem 2rem;
+  background: $pastelGreen;
+  p {
+    margin: 0;
+    padding: 0;
+    color: $darkGray;
+    font-size: 1rem;
+  }
+  a {
+    font-size: 1rem;
+  }
+}

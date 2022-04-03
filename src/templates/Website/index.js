@@ -2,6 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
+
 const Website = props => {
   const data = useStaticQuery(graphql`
     {
@@ -22,7 +23,7 @@ const Website = props => {
     : data.siteDescription
 
   return (
-    <React.Fragment>
+      <>
       <Helmet
         htmlAttributes={{
           lang: "en",
@@ -73,7 +74,7 @@ const Website = props => {
         <link media="print" onload="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&family=Roboto+Serif:wght@400;600&display=swap" rel="stylesheet" />
       </Helmet>
       {props.children}
-    </React.Fragment>
+      </>
   )
 }
 

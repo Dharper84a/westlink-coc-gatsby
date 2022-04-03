@@ -1,11 +1,31 @@
-import React, {useState} from "react"
+import React, {useState, useEffect, useCallback} from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
 // Styles
 import * as styles from "./styles.module.scss"
+import { Link } from "gatsby"
 
 const Header = props => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLive, setIsLive] = useState(false);
+
+  const isLiveHandler = useCallback(() => {
+    let d = new Date();
+    console.log('isLiveHandler')
+    if(d.getDay() === 0) {
+      if(d.getHours() >= 10 && d.getHours() < 12) {
+        console.log('is live')
+        setIsLive(true);
+      } else {
+        setIsLive(false);
+      }
+    }
+  },[]);
+
+  useEffect(() => {
+    isLiveHandler()
+    return () => {}
+  }, [isLiveHandler])
   const mobileIcon = "../../images/icons/chevron-left.svg"
 
   const onMobileButtonClickHandler = () => {
@@ -19,7 +39,7 @@ const Header = props => {
             src="../../images/logo-white-bg.png"
             alt="Westlink Church of Christ logo"
           />
-          <span>Westlink Church of Christ</span>
+          <span><Link to="/" title="Westlink Church of Christ home page">Westlink Church of Christ</Link></span>
         </div>
 
         <nav className={styles.navigation}>
@@ -98,6 +118,16 @@ const Header = props => {
             }
           </div>
           <ul className={styles.desktopNavigation}>
+            {isLive &&
+            <>
+            <li className={styles.isLiveLink}>
+              <Link to="/live">LIVE!</Link>
+            </li>
+            <li className={styles.isLiveDonate}>
+              <Link to="/donate" title="Show options to donate to Westlink Church of Christ">Donate</Link>
+            </li>
+            </>
+            }
             <li>
               About
               <ul>
