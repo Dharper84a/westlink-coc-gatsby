@@ -2,6 +2,20 @@ import React from "react"
 
 import * as styles from "./Templates.module.scss"
 
+export const StreamBox = props => {
+  return <div className={styles.streamBox}>{props.children}</div>
+}
+export const VideoPageContainer = props => {
+  return <div className={styles.videoPageContainer}>{props.children}</div>
+}
+
+export const DefaultGridContainer = props => {
+  return <div className={styles.defaultGridContainer}>{props.children}</div>
+}
+
+export const DefaultGridItem = props => {
+  return <div className={styles.defaultGridItem}>{props.children}</div>
+}
 export const DefaultPageContainer = props => {
   return <div className={styles.defaultPageContainer}>{props.children}</div>
 }

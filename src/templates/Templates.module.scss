@@ -29,6 +29,27 @@
   }
 }
 
+.default-grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10rem;
+  @include respond-to('medium') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond-to('large') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.default-grid-item {
+  width: 100%;
+  min-height: 9.375rem;
+  border-radius: 0.5rem;
+  h2 {
+    margin: 0.25rem 0;
+    font-size: 1.125rem;
+  }
+}
 .default-page-container {
   padding-top: 4rem;
   @include respond-to('small') {
@@ -37,6 +58,14 @@
     column-gap: 4rem;
 
   }
+}
+
+.stream-box {
+  margin: 0 0 4rem 0;
+}
+.video-page-container {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .default-page-media {
