@@ -28,6 +28,3 @@ const MapInstance = (props) => {
 export default GoogleApiWrapper({
   apiKey: `${process.env.GOOGLE_APIKEY}`
 })(MapInstance)
-// export default GoogleApiWrapper({
-//   apiKey: 'AIzaSyCMTSxkxHnoFHFJsC3l2fi8xcBC5aGbok8'
-// })(MapInstance)
