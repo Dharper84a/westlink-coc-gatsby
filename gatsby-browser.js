@@ -1,14 +1,8 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
- */
+import React from 'react';
+import "./src/common/styles/global.scss";
 
-// You can delete this file if you're not using it
-// import React from 'react';
+import {SiteProvider} from './src/context/SiteContext';
 
-// import { SiteProvider } from './src/context/SiteContext';
-
-// export const wrapRootElement = ({element}) => {
-//   <SiteProvider>{element}</SiteProvider>
-// }
+export const wrapRootElement = ({element}) => (
+  <SiteProvider>{element}</SiteProvider>
+)

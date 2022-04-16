@@ -34,33 +34,33 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   return {}
 }
 
-// exports.createPages = async function({ actions, graphql}) {
-//   const {data} = await graphql(`
-//     query {
-//       allContentfulPageDefault {
-//         edges {
-//           node {
-//             slug
-//           }
-//         }
-//       }
-//     }
-//   `)
+// // exports.createPages = async function({ actions, graphql}) {
+// //   const {data} = await graphql(`
+// //     query {
+// //       allContentfulPageDefault {
+// //         edges {
+// //           node {
+// //             slug
+// //           }
+// //         }
+// //       }
+// //     }
+// //   `)
 
-//   data.allContentfulPageDefault.edges.forEach(edge => {
-//     const slug = edge.node.slug;
-//     actions.createPage({
-//       path: slug,
-//       component: require.resolver('./src/templates/defaultPage/defaultPage.js'),
-//       context: {slug: slug},
-//     })
-//   })
-// }
+// //   data.allContentfulPageDefault.edges.forEach(edge => {
+// //     const slug = edge.node.slug;
+// //     actions.createPage({
+// //       path: slug,
+// //       component: require.resolver('./src/templates/defaultPage/defaultPage.js'),
+// //       context: {slug: slug},
+// //     })
+// //   })
+// // }
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const defaultPageTemplate = path.resolve(
-    `src/templates/defaultPage/defaultPage.js`
+    `src/templates/dynamic/DefaultTemplate/DefaultTemplate.js`
   )
   const defaultPageResult = await graphql(`
     query {
@@ -75,21 +75,21 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const peoplePageTemplate = path.resolve(
-    `src/templates/peoplePage/peoplePage.js`
-  )
-  const peoplePageResult = await graphql(`
-    query {
-      allContentfulPagePeople {
-        edges {
-          node {
-            slug
-            title
-          }
-        }
-      }
-    }
-  `)
+//   const peoplePageTemplate = path.resolve(
+//     `src/templates/peoplePage/peoplePage.js`
+//   )
+//   const peoplePageResult = await graphql(`
+//     query {
+//       allContentfulPagePeople {
+//         edges {
+//           node {
+//             slug
+//             title
+//           }
+//         }
+//       }
+//     }
+//   `)
 
   defaultPageResult.data.allContentfulPageDefault.edges.forEach(edge => {
     createPage({
@@ -102,14 +102,14 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  peoplePageResult.data.allContentfulPagePeople.edges.forEach(edge => {
-    createPage({
-      path: `${edge.node.slug}`,
-      component: peoplePageTemplate,
-      context: {
-        title: edge.node.title,
-        slug: edge.node.slug,
-      },
-    })
-  })
+//   peoplePageResult.data.allContentfulPagePeople.edges.forEach(edge => {
+//     createPage({
+//       path: `${edge.node.slug}`,
+//       component: peoplePageTemplate,
+//       context: {
+//         title: edge.node.title,
+//         slug: edge.node.slug,
+//       },
+//     })
+//   })
 }

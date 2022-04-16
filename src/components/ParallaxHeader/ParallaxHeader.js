@@ -1,19 +1,13 @@
 import React from "react"
 
-import * as styles from "./ParallaxHeader.module.css"
+import * as styles from "./ParallaxHeader.module.scss"
 
 const ParallaxHeader = props => {
   const inlineStyles = {
-    backgroundImage: `url(${props.image.file.url})`,
+    backgroundImage: `url(${props.imageUrl})`,
   }
   return (
-    <div className={styles.parallaxContainer} style={inlineStyles}>
-      {/* <img
-        alt='' 
-        src={props.image.file.url}
-        aria-hidden="true"
-      /> */}
-    </div>
+    <div className={styles.parallaxContainer} style={inlineStyles}></div>
   )
 }
 

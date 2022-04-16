@@ -1,0 +1,24 @@
+@import '../../common/styles/importer';
+.container {
+  
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10rem;
+  @include respond-to('medium') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond-to('large') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-item {
+    .image {
+      width: 100%;
+      min-height: 9.375rem;
+      border-radius: 0.5rem;
+      background-color: $lightGray;
+    }
+  }
+}

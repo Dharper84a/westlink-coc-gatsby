@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&family=Roboto+Serif:wght@400;700&display=swap');
+@import './importer';
+
+* {
+  box-sizing: border-box;
+}
+html, body {
+  min-height: calc(100vh - 5rem);
+  margin: 0;
+  padding: 0;
+  @include font-size('default');
+  @include font-family('sans');
+}
+
+main {
+  width: 85%;
+  max-width: $mainMaxWidth;
+  margin: $mainTopMargin auto $mainBottomMargin auto;
+  & > h1 {
+    padding-top: 4rem;
+  }
+}
+
+a {
+  color: $skyBlue;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
