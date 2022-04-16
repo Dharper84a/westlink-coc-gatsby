@@ -1,0 +1,38 @@
+$breakpoints: (
+  'xsmall': 550px,
+  'small':  768px,
+  'medium': 1024px,
+  'large':  1366px
+) !default;
+
+$sans: Poppins, sans-serif;
+$serif: 'Roboto Serif', serif;
+$fonts: (
+  'sans': $sans,
+  'serif': $serif
+);
+
+$fontSizes: (
+  'default': 16px,
+  'medium': 1.35em,
+  'large': 1.75em,
+  'xlarge': 2.5em
+);
+
+$mainMaxWidth: 112.5rem;
+$mainTopMargin: 5rem;
+$mainBottomMargin: 5rem;
+$spacingSmall: 10px;
+$spacingMedium: 30px;
+$spacingLarge: 50px;
+
+$pastelGreen: #ccffcc;
+$skyBlue: #33ccff;
+$lightGray: #f2f2f2;
+$darkGray: #404040;
+$mediumBlack: #1a1a1a;
+$red: #ff3300;
+$green: #33cc33;
+$white: #fff;
+
+$mediumBlue: #3399ff;
