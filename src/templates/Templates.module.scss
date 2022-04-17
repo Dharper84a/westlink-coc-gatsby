@@ -19,6 +19,7 @@
   width: 100%;
   @include respond-to('medium') {
     width: 66%;
+    margin-right: 4rem;
   }
 }
 

@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className={styles.container}>
-      <Link to="#" title="Donate to Westlink Church of Christ">
+      <Link to="/donate" title="Donate to Westlink Church of Christ">
         Donate
       </Link>
       &nbsp;•&nbsp;
