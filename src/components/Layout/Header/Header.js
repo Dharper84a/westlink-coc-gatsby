@@ -91,7 +91,7 @@ const Header = (props) => {
                         <a href="/podcasts">Podcasts</a>
                       </li>
                       <li>
-                        <a href="/past-sermons">Past Sermons</a>
+                        <a href="/sermons">Past Sermons</a>
                       </li>
                     </ul>
                   </nav>
@@ -144,7 +144,7 @@ const Header = (props) => {
                   <a href="/podcasts">Podcasts</a>
                 </li>
                 <li>
-                  <a href="/past-sermons">Past Sermons</a>
+                  <a href="/sermons">Past Sermons</a>
                 </li>
               </ul>
             </li>

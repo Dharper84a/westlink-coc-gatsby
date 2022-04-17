@@ -14,13 +14,13 @@ import Website from '../components/Layout/Website';
 import VideoCard from '../components/VideoCard/VideoCard';
 
 
-const Podcasts = ({data: {allContentfulVideoPodcast: data}}) => {
+const Sermons = ({data: {allContentfulVideoSermons: data}}) => {
   const [viewerHeight, setViewerHeight] = useState(0);
   const [viewerWidth, setViewerWidth] = useState(0);
   const videoRef = useRef();
 
 
-  const hasPodcasts =
+  const hasSermons =
     data.edges.length > 0 ? true : false
 
 
@@ -69,15 +69,15 @@ const Podcasts = ({data: {allContentfulVideoPodcast: data}}) => {
   return (
     <Website meta={meta} header={true} footer={true}>
       <Helmet>
-        <title>Podcasts - Westlink Church of Christ</title>
+        <title>Live Stream - Westlink Church of Christ</title>
       </Helmet>
       <main ref={videoRef}>
-        <h1>Podcasts</h1>
+        <h1>Past Sermons</h1>
         <section>
           {/* <VideoCard videoId="7ty-gUooWXI" width={viewerWidth} height={viewerHeight} /> */}
         </section>
         <section>
-          {hasPodcasts && (
+          {hasSermons && (
             <DefaultGridContainer>
               {data.edges.map((item, key) => {
                 return (
@@ -100,7 +100,7 @@ const Podcasts = ({data: {allContentfulVideoPodcast: data}}) => {
 
 export const query = graphql`
   {
-    allContentfulVideoPodcast {
+    allContentfulVideoSermons {
       edges {
         node {
           slug
@@ -113,4 +113,4 @@ export const query = graphql`
   }
 `
 
-export default Podcasts
+export default Sermons
