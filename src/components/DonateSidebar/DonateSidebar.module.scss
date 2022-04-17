@@ -1,0 +1,17 @@
+@import '../../common/styles/importer';
+
+.container {
+  margin-top: 4rem;
+  background: $lightGray;
+  border-radius: 0.5rem;
+  ul {
+    padding: 1rem;
+    li {
+      margin: 0.5rem 0;
+    }
+  }
+  address {
+    font-style: normal;
+    font-weight: bold;
+  }
+}

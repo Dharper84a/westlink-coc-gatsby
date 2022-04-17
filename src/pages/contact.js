@@ -1,20 +1,16 @@
-import React, { useState } from "react"
+import React from "react"
 import { Helmet } from "react-helmet"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
+
 
 // Template
-import {PageContainer, PageContent, PageSidebar, SidebarPageContainer} from '../templates/Templates';
+import {PageContent, PageSidebar, SidebarPageContainer} from '../templates/Templates';
 
 // Components
 import Website from "../components/Layout/Website"
-
 import ContactForm from "../components/Forms/ContactForm/ContactForm"
 import MapInstance from "../components/Map/Map"
-// import Website from "../templates/Website"
-// import Header from "../templates/Header"
-// import Footer from "../templates/Footer"
 
-// import ContactPageTemplate from "../templates/contactPage/contactPage"
 
 const ContactPage = props => {
   console.log(props)
@@ -68,6 +64,7 @@ const ContactPage = props => {
               <span itemProp="addressRegion">Kansas</span>{" "}
               <span itemProp="postalCode">67212</span>
               <br />
+              <Link to="https://goo.gl/maps/ep44iBWpLW8Aff6J7" title="Get directions to Westlink Churhc of Christ" target="_blank" rel="noopener noreferrer">Get Directions</Link>
             </address>
 
             <ContactForm />
