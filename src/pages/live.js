@@ -92,9 +92,11 @@ const Live = () => {
         <VideoPageContainer id="streamViewerWidth">
           <h1>Live Stream</h1>
           <StreamBox>
-          <VideoCard videoId="TD-s-Ucwu_s" width={viewerWidth} height={viewerHeight} />
+          
        
-          {siteStore.isServiceActive && <div>show live stream</div>}
+          {siteStore.isServiceActive && 
+          <VideoCard videoId="7ty-gUooWXI" width={viewerWidth} height={viewerHeight} />
+          }
           {!siteStore.isServiceActive && (
             <div>
               <p>
