@@ -75,21 +75,21 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-//   const peoplePageTemplate = path.resolve(
-//     `src/templates/peoplePage/peoplePage.js`
-//   )
-//   const peoplePageResult = await graphql(`
-//     query {
-//       allContentfulPagePeople {
-//         edges {
-//           node {
-//             slug
-//             title
-//           }
-//         }
-//       }
-//     }
-//   `)
+  const peoplePageTemplate = path.resolve(
+    `src/templates/dynamic/PeopleTemplate/PeopleTemplate.js`
+  )
+  const peoplePageResult = await graphql(`
+    query {
+      allContentfulPagePeople {
+        edges {
+          node {
+            slug
+            title
+          }
+        }
+      }
+    }
+  `)
 
   defaultPageResult.data.allContentfulPageDefault.edges.forEach(edge => {
     createPage({
@@ -102,14 +102,14 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-//   peoplePageResult.data.allContentfulPagePeople.edges.forEach(edge => {
-//     createPage({
-//       path: `${edge.node.slug}`,
-//       component: peoplePageTemplate,
-//       context: {
-//         title: edge.node.title,
-//         slug: edge.node.slug,
-//       },
-//     })
-//   })
+  peoplePageResult.data.allContentfulPagePeople.edges.forEach(edge => {
+    createPage({
+      path: `${edge.node.slug}`,
+      component: peoplePageTemplate,
+      context: {
+        title: edge.node.title,
+        slug: edge.node.slug,
+      },
+    })
+  })
 }
