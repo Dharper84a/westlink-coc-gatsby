@@ -1,19 +1,18 @@
-import React, {Fragment} from 'react';
+import React from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-import Card from './Card/Card';
+import * as styles from "./CallToAction.module.scss"
 
-import * as styles from './CallToAction.module.scss';
-
-const CallToAction = (props) => {
-console.log(props);
+const CallToAction = props => {
+  const image = getImage(props.image)
   return (
-    <section className={styles.container}>
-      {props.items &&
-       props.items.map((item, key) => {
-         return <Card title={item.title} content={item.content} key={key} />
-       }) 
-      }
-    </section>
+    <div className={styles.ctaCard}>
+      <GatsbyImage image={image} alt={image?.description} />
+      <div className={styles.ctaCardContent}>
+        <h2>{props.title}</h2>
+        <p>{props.content}</p>
+      </div>
+    </div>
   )
 }
 

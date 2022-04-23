@@ -1,15 +1,12 @@
-import React, {useState, useContext} from "react"
+import React, {useState} from "react"
 import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
-
-import SiteContext from "../../../context/SiteContext"
 
 // Styles
 import * as styles from "./Header.module.scss"
 
 
 const Header = (props) => {
-  const siteStore = useContext(SiteContext);
   const [isOpen, setIsOpen] = useState(false)
   
   const mobileIcon = "../../../images/icons/chevron-left.svg"

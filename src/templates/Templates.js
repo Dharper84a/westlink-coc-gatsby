@@ -2,6 +2,12 @@ import React from "react"
 
 import * as styles from "./Templates.module.scss"
 
+export const UpcomingEventsContainerTemplate = props => {
+  return <div className={styles.upcomingEventsContainer}>{props.children}</div>
+}
+export const CallToActionContainerTemplate = props => {
+  return <section className={styles.ctaCardContainer}>{props.children}</section>
+}
 export const PeoplePageContainer = props => {
   return <div className={styles.peoplePageContainer}>{props.children}</div>
 }
@@ -22,7 +28,7 @@ export const PeopleFeaturedPerson = props => {
 }
 
 export const PeoplePersons = props => {
-  return <div className={styles.peoplePersons}>{props.children}</div>
+  return <div className={styles.peoplePerson}>{props.children}</div>
 }
 
 export const StreamBox = props => {

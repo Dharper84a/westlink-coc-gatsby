@@ -25,15 +25,15 @@ const DefaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
   console.log(data)
   const meta = {
     title: data.title,
-    description: data?.description,
+    description: data.metaPageDescription ? data.metaPageDescription : '',
     og: [
       {
         key: "og:title",
-        value: data.title,
+        value: data.metaPageTitle ? data.metaPageTitle : data.title,
       },
       {
         key: "og:description",
-        value: data?.description,
+        value: data.metaPageDescription ? data.metaPageDescription : '',
       },
       {
         key: "og:type",
@@ -75,44 +75,6 @@ const DefaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
         </DefaultPageContainer>
       </main>
     </Website>
-
-    // <Website>
-    //   <Header />
-    //     <Helmet>
-    //       <title>{data?.metaPageTitle}</title>
-    //       <meta name="description" content={data?.metaPageDescription} />
-    //     </Helmet>
-
-    //     <main className={styles.pageContent}>
-    //     {data &&
-    //       <>
-    //         <header>
-    //           <DefaultPageImage
-    //             desktopImage={desktopImage}
-    //             mobileImage={mobileImage}
-    //             alt={data.featuredImageDesktop?.description}
-    //             backgroundColor="#f2f2f2"
-    //           />
-    //         </header>
-
-    //         <section>
-    //           <h1>{data.title}</h1>
-    //           <div>
-    //             <ContentfulRichText richText={data.pageContent} />
-    //           </div>
-    //         </section>
-
-    //         {/* <aside>LINKED ITEMS</aside> */}
-    //       </>
-    //     }
-
-    //     {!data &&
-    //       <p>Unable to load page</p>
-    //     }
-
-    //   </main>
-    //   <Footer />
-    // </Website>
   )
 }
 

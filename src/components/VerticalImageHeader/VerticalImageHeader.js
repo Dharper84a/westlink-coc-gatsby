@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import * as styles from './VerticalImageHeader.module.scss';
 
