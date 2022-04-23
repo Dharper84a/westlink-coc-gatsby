@@ -1,5 +1,20 @@
 @import '../common/styles/importer';
 
+.content-and-sidebar {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 10rem;
+  margin: 0 0 4rem 0;
+  aside {
+    margin-top: 3rem;
+  }
+  @include respond-to('medium') {
+    grid-template-columns: 2fr 1fr;
+    aside {
+      margin-top: 0;
+    }
+  }
+}
 .upcoming-events-container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);

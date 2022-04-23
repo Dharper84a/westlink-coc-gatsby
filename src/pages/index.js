@@ -10,7 +10,6 @@ import Website from "../components/Layout/Website"
 
 import ParallaxHeader from "../components/ParallaxHeader/ParallaxHeader"
 import CallToAction from "../components/CallToAction/CallToAction"
-import UpcomingEvents from "../components/UpcomingEvents/UpcomingEvents"
 import EventCard from "../components/Cards/EventCard/EventCard";
 
 

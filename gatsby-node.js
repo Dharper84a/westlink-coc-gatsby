@@ -80,6 +80,23 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
+  const eventPageTemplate = path.resolve(
+    `src/templates/dynamic/EventTemplate/EventTemplate.js`
+  );
+
+  const eventPageResult = await graphql(`
+    query {
+      allContentfulEvent {
+        edges {
+          node {
+            title
+            slug
+          }
+        }
+      }
+    }
+  `);
+
   defaultPageResult.data.allContentfulPageDefault.edges.forEach(edge => {
     createPage({
       path: `${edge.node.slug}`,
@@ -95,6 +112,17 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `${edge.node.slug}`,
       component: peoplePageTemplate,
+      context: {
+        title: edge.node.title,
+        slug: edge.node.slug,
+      },
+    })
+  })
+
+  eventPageResult.data.allContentfulEvent.edges.forEach(edge => {
+    createPage({
+      path: `event/${edge.node.slug}`,
+      component: eventPageTemplate,
       context: {
         title: edge.node.title,
         slug: edge.node.slug,
