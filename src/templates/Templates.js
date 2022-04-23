@@ -2,6 +2,9 @@ import React from "react"
 
 import * as styles from "./Templates.module.scss"
 
+export const ContentAndSidebar = props => {
+  return <div className={styles.contentAndSidebar}>{props.children}</div>
+}
 export const UpcomingEventsContainerTemplate = props => {
   return <div className={styles.upcomingEventsContainer}>{props.children}</div>
 }

@@ -4,7 +4,7 @@ import { Map, Marker, GoogleApiWrapper } from "google-maps-react"
 import * as styles from './Map.module.scss';
 const MapInstance = (props) => {
   return (
-    <div className={`${styles[props.className]}`}>
+    <div className={styles[props.className]}>
       <Map 
         google={props.google} 
         zoom={14} 
