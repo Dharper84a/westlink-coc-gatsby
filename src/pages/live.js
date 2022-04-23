@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, useCallback, useEffect, useLayoutEffect } from "react"
+import React, { useRef, useContext, useState, useCallback, useLayoutEffect } from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { Link } from "gatsby"
@@ -17,7 +17,6 @@ import {
 } from "../templates/Templates"
 const Live = () => {
   const siteStore = useContext(SiteContext)
-  const [isLoading, setIsLoading] = useState(true);
   const [viewerHeight, setViewerHeight] = useState(0);
   const [viewerWidth, setViewerWidth] = useState(0);
   const videoRef = useRef();
@@ -75,7 +74,6 @@ const Live = () => {
     setViewerHeight(streamViewerHeight);
     if(viewerWidth > 0) {
       setViewerHeight(viewerWidth * 0.5625);
-      setIsLoading(false);
     }
   },[streamViewerHeight, streamViewerWidth, viewerWidth]);
 

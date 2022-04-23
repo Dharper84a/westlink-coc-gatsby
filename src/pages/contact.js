@@ -64,7 +64,7 @@ const ContactPage = props => {
               <span itemProp="addressRegion">Kansas</span>{" "}
               <span itemProp="postalCode">67212</span>
               <br />
-              <Link to="https://goo.gl/maps/ep44iBWpLW8Aff6J7" title="Get directions to Westlink Churhc of Christ" target="_blank" rel="noopener noreferrer">Get Directions</Link>
+              <Link to="https://www.google.com/maps/dir//Westlink+Church+of+Christ,+10025+W+Central+Ave,+Wichita,+KS+67212/@37.7123913,-97.4815495" title="Get directions to Westlink Churhc of Christ" target="_blank" rel="noopener noreferrer">Get Directions</Link>
             </address>
 
             <ContactForm />
@@ -114,6 +114,10 @@ export const query = graphql`
       address {
         lat
         lon
+      }
+      metaTitle
+      metaDescription {
+        metaDescription
       }
     }
   }

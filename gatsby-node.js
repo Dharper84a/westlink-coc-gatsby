@@ -1,5 +1,5 @@
 const path = require("path")
-const { GraphQLString } = require("gatsby/graphql")
+const { GraphQLString, GraphQLObjectType } = require("gatsby/graphql")
 
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   if (type.name === "ContentfulSiteMeta") {
@@ -29,33 +29,22 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
       },
     }
   }
+ 
+  // if(type.name === "ContentfulPagePeople") {
+  //   return {
+  //     topContent: 
+  //     {
+  //       type: RichText,
+  //     },
+  //     resolve: () => {
+  //       return " "
+  //     },
+  //   }
+  // }
 
   // by default return empty object
   return {}
 }
-
-// // exports.createPages = async function({ actions, graphql}) {
-// //   const {data} = await graphql(`
-// //     query {
-// //       allContentfulPageDefault {
-// //         edges {
-// //           node {
-// //             slug
-// //           }
-// //         }
-// //       }
-// //     }
-// //   `)
-
-// //   data.allContentfulPageDefault.edges.forEach(edge => {
-// //     const slug = edge.node.slug;
-// //     actions.createPage({
-// //       path: slug,
-// //       component: require.resolver('./src/templates/defaultPage/defaultPage.js'),
-// //       context: {slug: slug},
-// //     })
-// //   })
-// // }
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions

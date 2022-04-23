@@ -1,9 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
-
-// Hooks
-import useWindowDimensions from "../hooks/useWindowDimensions"
 
 // Templates
 import {
@@ -17,9 +14,6 @@ import Website from "../components/Layout/Website"
 import DonateSidebar from "../components/DonateSidebar/DonateSidebar"
 
 const Donate = props => {
-  const [image, setImage] = useState(null)
-  const { width } = useWindowDimensions()
-
   const meta = {
     title: "Donate - Westlink Church of Christ",
     description: "",

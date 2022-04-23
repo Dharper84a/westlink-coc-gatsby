@@ -15,7 +15,7 @@ import VideoCard from '../components/VideoCard/VideoCard';
 
 
 const Podcasts = ({data: {allContentfulVideoPodcast: data}}) => {
-  const [viewerHeight, setViewerHeight] = useState(0);
+  // const [setViewerHeight] = useState(0);
   const [viewerWidth, setViewerWidth] = useState(0);
   const videoRef = useRef();
 
@@ -50,17 +50,17 @@ const Podcasts = ({data: {allContentfulVideoPodcast: data}}) => {
     }
   },[])
 
-  const streamViewerHeight = useCallback(() => {
-    return viewerWidth * 0.5625;
-  },[viewerWidth])
+  // const streamViewerHeight = useCallback(() => {
+  //   return viewerWidth * 0.5625;
+  // },[viewerWidth])
 
   const setViewerSizes = useCallback(() => {
     setViewerWidth(streamViewerWidth);
-    setViewerHeight(streamViewerHeight);
+    // setViewerHeight(streamViewerHeight);
     if(viewerWidth > 0) {
-      setViewerHeight(viewerWidth * 0.5625);
+      // setViewerHeight(viewerWidth * 0.5625);
     }
-  },[streamViewerHeight, streamViewerWidth, viewerWidth]);
+  },[streamViewerWidth, viewerWidth]);
 
   useLayoutEffect(() => {
     setViewerSizes();

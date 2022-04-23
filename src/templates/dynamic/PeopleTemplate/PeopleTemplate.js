@@ -1,4 +1,4 @@
-import React, {useEffect,useState, Fragment} from 'react';
+import React, {useEffect,useState} from 'react';
 import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"

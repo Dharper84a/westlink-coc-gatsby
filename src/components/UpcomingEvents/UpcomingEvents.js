@@ -1,5 +1,5 @@
 import React from "react"
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import {Link} from 'gatsby'
 
 import * as styles from "./UpcomingEvents.module.scss"
@@ -28,7 +28,7 @@ const UpcomingEvents = () => {
 
   console.log(events);
   return (
-    <section className={styles.container}>
+    <section>
       <h2>Upcoming Events</h2>
       <div className={styles.grid}>
         {events.length > 0 &&
