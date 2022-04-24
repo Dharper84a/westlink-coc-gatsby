@@ -13,7 +13,7 @@ const People = (page) => {
   console.log(page)
   const people = {
     title: page.title,
-    content: page.topContent,
+    content: page.content,
     featuredPerson: page.featuredPerson,
     people: page.people,
   };

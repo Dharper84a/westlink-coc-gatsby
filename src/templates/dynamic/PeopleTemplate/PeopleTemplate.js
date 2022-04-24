@@ -49,12 +49,13 @@ export const query = graphql`
       image {
         description
         gatsbyImageData(
-          width: 600
+          width: 400
           height: 1100
           placeholder: BLURRED
+          quality: 80
         )
       }
-      topContent {
+      content {
         raw
       }
       featuredPerson {
