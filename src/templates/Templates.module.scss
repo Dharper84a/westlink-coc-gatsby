@@ -1,5 +1,18 @@
 @import '../common/styles/importer';
 
+.content-with-media-column {
+  margin: 10rem 0;
+}
+
+.content-with-media-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 5rem;
+
+  @include respond-to('medium') {
+    grid-template-columns: 1fr 3fr;
+  }
+}
 .content-and-sidebar {
   display: grid;
   grid-template-columns: 1fr;

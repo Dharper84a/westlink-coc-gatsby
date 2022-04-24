@@ -35,6 +35,11 @@ ul {
   list-style: none;
 }
 
+figure {
+  margin: 0;
+  padding: 0;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

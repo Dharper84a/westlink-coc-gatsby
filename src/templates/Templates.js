@@ -2,6 +2,13 @@ import React from "react"
 
 import * as styles from "./Templates.module.scss"
 
+export const ContentWithMediaColumn = props => {
+  return <div className={styles.contentWithMediaColumn}>{props.children}</div>
+}
+
+export const ContentWithMediaGrid = props => {
+  return <div className={styles.contentWithMediaGrid}>{props.children}</div>
+}
 export const ContentAndSidebar = props => {
   return <div className={styles.contentAndSidebar}>{props.children}</div>
 }
