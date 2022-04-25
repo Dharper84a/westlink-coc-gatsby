@@ -1,63 +1,88 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import React, { Fragment, useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
 
-import SiteContext from "../../context/SiteContext";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
-/*
-OG K/V
-<meta property="og:title" content={props.meta.title} />
-<meta property="og:description" content={props.meta?.description} />
-<meta property="og:type" content={props.meta?.og?.type} />
-<meta property="og:url" content={pageUrl} />
-<meta property="og:locale" content="en_US" />
+import SiteContext from "../../context/SiteContext"
+import Header from "./Header/Header"
+import Footer from "./Footer/Footer"
 
-<meta property="og:image" content={props.meta?.og?.image?.source} />
-<meta property="og:image:type" content={props.meta?.og?.image?.mime} />
-<meta property="og:image:width" content={props.meta?.og?.image?.width} />
-<meta property="og:image:height" content={props.meta?.og?.image?.height} />
-<meta property="og:image:alt" content={props.meta?.og?.image?.alt} />
-*/
+const websiteTitle = "Westlink Church of Christ"
 
-const Website = (props) => {
-  const [pageUrl, setPageUrl] = useState('Loading...');
+const Website = props => {
+  const [pageUrl, setPageUrl] = useState("Loading...")
+  const [hasPageTitle, setHasPageTitle] = useState(false)
 
+  const defaultTitle =
+    props.title === websiteTitle
+      ? props.title
+      : `${props.title} - ${websiteTitle}`
+
+  const generateMetaTag = (meta, key) => {
+
+    const content = meta.content.content
+
+    var schema = {
+      property: "",
+      content: content,
+    }
+
+    switch (meta.contentType) {
+      case "Title":
+        setHasPageTitle(true)
+        return (
+          <title>
+            {content === websiteTitle
+              ? content
+              : `${content} - ${websiteTitle}`}
+          </title>
+        )
+      case "Description":
+        return <meta {...{ name: "description", content: content }} />
+      case "Social Title":
+        schema.property = "og:title"
+        break
+      case "Social Description":
+        schema.property = "og:description"
+        break
+      case "Social Image":
+        schema.property = "og:image"
+        break
+      case "Social Image Alt":
+        schema.property = "og:image:alt"
+        break;
+      default:
+        return <></>
+    }
+
+    return <meta {...schema} key={key} />
+  }
 
   useEffect(() => {
-    setPageUrl(window.location.href);
+    setPageUrl(window.location.href)
   }, [])
   return (
     <SiteContext.Consumer>
-      {site =>(
+      {site => (
         <Fragment>
           <Helmet>
-          <meta charSet="utf-8" />
-          <title>{props.meta.title}</title>
-          <meta name="description" content={props.meta?.description} />
-          
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:locale" content="en_US" />
+            <meta charSet="utf-8" />
 
-          {props.meta.og && 
-            props.meta.og.map((data, key) => {
-              return <meta property={data.key} content={data.value} key={key} />
-            })
-          }
+            {props.meta.map((meta, key) => {
+              return generateMetaTag(meta, key)
+            })}
+
+            {!hasPageTitle &&
+            <title>{defaultTitle}</title>
+            }
+            <meta property="og:url" content={pageUrl} />
+            <meta property="og:locale" content="en_US" />
           </Helmet>
-          {props.header && 
-            <Header />
-          }
+          {props.header && <Header />}
           {props.children}
-          {props.footer &&
-            <Footer />
-          }
+          {props.footer && <Footer />}
         </Fragment>
       )}
-      
-      
     </SiteContext.Consumer>
   )
-
 }
 
 export default Website

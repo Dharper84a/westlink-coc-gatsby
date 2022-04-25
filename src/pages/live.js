@@ -1,5 +1,4 @@
 import React, { useRef, useContext, useState, useCallback, useLayoutEffect } from "react"
-import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { Link } from "gatsby"
 
@@ -39,25 +38,6 @@ const Live = () => {
     sermons.allContentfulVideoSermons.edges.length > 0 ? true : false
 
 
-  const meta = {
-    title: "Live Stream - Westlink Church of Christ",
-    description: "",
-    og: [
-      {
-        key: "og:title",
-        value: "Westlink Church of Christs Live Stream",
-      },
-      {
-        key: "og:description",
-        value: "",
-      },
-      {
-        key: "og:type",
-        value: "website",
-      },
-    ],
-  }
-
   const streamViewerWidth = useCallback(() => {
     let element = videoRef.current;
     if(element) {
@@ -82,10 +62,7 @@ const Live = () => {
     return () => {}
   }, [setViewerSizes])
   return (
-    <Website meta={meta} header={true} footer={true}>
-      <Helmet>
-        <title>Live Stream - Westlink Church of Christ</title>
-      </Helmet>
+    <Website meta={[]} title="Live Stream" header={true} footer={true}>
       <main ref={videoRef}>
         <VideoPageContainer id="streamViewerWidth">
           <h1>Live Stream</h1>

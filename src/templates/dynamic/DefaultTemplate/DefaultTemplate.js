@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
@@ -23,24 +22,6 @@ const DefaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
   const { width } = useWindowDimensions()
   
   console.log(data)
-  const meta = {
-    title: data.title,
-    description: data.metaPageDescription ? data.metaPageDescription : '',
-    og: [
-      {
-        key: "og:title",
-        value: data.metaPageTitle ? data.metaPageTitle : data.title,
-      },
-      {
-        key: "og:description",
-        value: data.metaPageDescription ? data.metaPageDescription : '',
-      },
-      {
-        key: "og:type",
-        value: "website",
-      },
-    ],
-  }
 
   useEffect(() => {
     setImage(
@@ -51,10 +32,7 @@ const DefaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
   }, [width, data.featuredImageDesktop, data.featuredImageMobile])
 
   return (
-    <Website meta={meta} header={true} footer={true}>
-      <Helmet>
-        <title>{data.metaPageTitle}</title>
-      </Helmet>
+    <Website meta={data.metaData} title={data.title} header={true} footer={true}>
       <main>
         <DefaultPageContainer>
           <DefaultPageMedia>
@@ -92,10 +70,11 @@ export const query = graphql`
         description
         gatsbyImageData
       }
-      metaPageDescription
-      metaPageTitle
       pageContent {
         raw
+      }
+      metaData {
+        ...ComponentMeta
       }
     }
   }

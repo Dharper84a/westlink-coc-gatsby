@@ -6,7 +6,7 @@ module.exports = {
     title: `Westlink Church of Christ`,
     description: `need a website description`,
     author: `Donald Harper`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://westlink.church`,
   },
   plugins: [
     `gatsby-plugin-sass`,
