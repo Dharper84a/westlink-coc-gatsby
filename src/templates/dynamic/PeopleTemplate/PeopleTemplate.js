@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 
 
@@ -9,30 +8,8 @@ import People from '../../../components/People/People';
 
 const PeopleTemplate = ({ data: { contentfulPagePeople: data } }) => {
 
-  const meta = {
-    title: data.title,
-    description: data?.description,
-    og: [
-      {
-        key: "og:title",
-        value: data.title,
-      },
-      {
-        key: "og:description",
-        value: data?.description,
-      },
-      {
-        key: "og:type",
-        value: "website",
-      },
-    ],
-  }
-
   return (
-    <Website meta={meta} header={true} footer={true}>
-      <Helmet>
-        <title>{data.title}</title>
-      </Helmet>
+    <Website meta={data.metaData} title={data.title} header={true} footer={true}>
       <main>
         <People {...data} />
       </main>
@@ -87,6 +64,9 @@ export const query = graphql`
             formats: [AUTO, WEBP]
           )
         }
+      }
+      metaData {
+        ...ComponentMeta
       }
     }
   }

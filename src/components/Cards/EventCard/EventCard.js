@@ -6,9 +6,6 @@ import ExcerptFromRichText from '../../ContentTypes/ExcerptFromRichText';
 import * as styles from './EventCard.module.scss';
 
 const EventCard = (event) => {
-
-  console.log(event);
-
   const images = event.image.map((image) => {
     return getImage(image);
   })

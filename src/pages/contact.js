@@ -1,5 +1,4 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { Link, graphql } from "gatsby"
 
 
@@ -15,30 +14,9 @@ import MapInstance from "../components/Map/Map"
 const ContactPage = props => {
   console.log(props)
   const data = props.data.contentfulPageContact
-  const meta = {
-    title: data.title,
-    description: data?.description,
-    og: [
-      {
-        key: "og:title",
-        value: data.title,
-      },
-      {
-        key: "og:description",
-        value: data?.description,
-      },
-      {
-        key: "og:type",
-        value: "website",
-      },
-    ],
-  }
 
   return (
-    <Website meta={meta} header={true} footer={true}>
-      <Helmet>
-        <title>Contact - Westlink Church of Christ</title>
-      </Helmet>
+    <Website meta={data.metaData} title={data.title} header={true} footer={true}>
       <main itemScope itemType="https://schema.org/Organization">
         <h1 itemProp="name">Contact Westlink</h1>
         <SidebarPageContainer>
@@ -115,9 +93,8 @@ export const query = graphql`
         lat
         lon
       }
-      metaTitle
-      metaDescription {
-        metaDescription
+      metaData {
+        ...ComponentMeta
       }
     }
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from "gatsby"
 
 // Components
@@ -10,30 +9,9 @@ import Event from '../../../components/Event/Event';
 
 const EventTemplate = ({ data: { contentfulEvent: data } }) => {
   console.log('event', data);
-  const meta = {
-    title: data.title,
-    description: data.metaPageDescription ? data.metaPageDescription : '',
-    og: [
-      {
-        key: "og:title",
-        value: data.metaPageTitle ? data.metaPageTitle : data.title,
-      },
-      {
-        key: "og:description",
-        value: data.metaPageDescription ? data.metaPageDescription : '',
-      },
-      {
-        key: "og:type",
-        value: "website",
-      },
-    ],
-  }
 
   return (
-    <Website meta={meta} header={true} footer={true}>
-      <Helmet>
-        <title>{data.title}</title>
-      </Helmet>
+    <Website meta={data.metaData} title={data.title} header={true} footer={true}>
       <main>
         <Event {...data} />
       </main>
@@ -63,6 +41,9 @@ export const query = graphql`
           placeholder: BLURRED
         )
         description
+      }
+      metaData {
+        ...ComponentMeta
       }
       slug
     }

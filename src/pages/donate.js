@@ -1,5 +1,4 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 
 // Templates
@@ -14,30 +13,9 @@ import Website from "../components/Layout/Website"
 import DonateSidebar from "../components/DonateSidebar/DonateSidebar"
 
 const Donate = props => {
-  const meta = {
-    title: "Donate - Westlink Church of Christ",
-    description: "",
-    og: [
-      {
-        key: "og:title",
-        value: "Donate - Westlink Church of Christ",
-      },
-      {
-        key: "og:description",
-        value: "",
-      },
-      {
-        key: "og:type",
-        value: "website",
-      },
-    ],
-  }
 
   return (
-    <Website meta={meta} header={true} footer={true}>
-      <Helmet>
-        <title>Donate - Westlink Church of Christ</title>
-      </Helmet>
+    <Website meta={[]} title="Donate" header={true} footer={true}>
       <main>
         <SidebarPageContainer>
           <PageContent>

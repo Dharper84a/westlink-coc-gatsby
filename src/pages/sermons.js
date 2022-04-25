@@ -1,5 +1,4 @@
 import React, {useState, useRef, useCallback, useLayoutEffect} from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
 
@@ -22,26 +21,6 @@ const Sermons = ({data: {allContentfulVideoSermons: data}}) => {
 
   const hasSermons =
     data.edges.length > 0 ? true : false
-
-
-  const meta = {
-    title: "Live Stream - Westlink Church of Christ",
-    description: "",
-    og: [
-      {
-        key: "og:title",
-        value: "Westlink Church of Christs Live Stream",
-      },
-      {
-        key: "og:description",
-        value: "",
-      },
-      {
-        key: "og:type",
-        value: "website",
-      },
-    ],
-  }
 
   const streamViewerWidth = useCallback(() => {
     let element = videoRef.current;
@@ -67,10 +46,7 @@ const Sermons = ({data: {allContentfulVideoSermons: data}}) => {
     return () => {}
   }, [setViewerSizes])
   return (
-    <Website meta={meta} header={true} footer={true}>
-      <Helmet>
-        <title>Live Stream - Westlink Church of Christ</title>
-      </Helmet>
+    <Website meta={[]} title="Past Sermons" header={true} footer={true}>
       <main ref={videoRef}>
         <h1>Past Sermons</h1>
         <section>

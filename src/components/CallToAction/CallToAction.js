@@ -7,7 +7,7 @@ const CallToAction = props => {
   const image = getImage(props.image)
   return (
     <div className={styles.ctaCard}>
-      <GatsbyImage image={image} alt={image?.description} />
+      <GatsbyImage image={image} alt={props.image?.description} className={styles.ctaImage}/>
       <div className={styles.ctaCardContent}>
         <h2>{props.title}</h2>
         <p>{props.content}</p>
