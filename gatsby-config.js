@@ -1,10 +1,12 @@
-require('dotenv').config()
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 module.exports = {
   siteMetadata: {
     title: `Westlink Church of Christ`,
     description: `need a website description`,
     author: `Donald Harper`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://westlink.church`,
   },
   plugins: [
     `gatsby-plugin-sass`,

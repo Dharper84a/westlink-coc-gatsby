@@ -1,0 +1,34 @@
+@import '../../common/styles/importer';
+
+.cta-card {
+  margin-bottom: 3rem;
+  img {
+    border-radius: 0.5rem;
+  }
+  @include respond-to('xsmall') {
+    display: flex;
+  }
+}
+
+.cta-image {
+  height: 12.5rem;
+  @include respond-to('xsmall') {
+    width: 12.5rem;
+  }
+}
+
+.cta-card-content {
+  h2 {
+    margin-top: 1rem;
+  }
+  p {
+    margin: 0;
+  }
+  @include respond-to('xsmall') {
+    width: calc(100% - 12.5rem);
+    padding: 0 1rem 1rem 1rem;
+    h2 {
+      margin-top: 0;
+    }
+  }
+}

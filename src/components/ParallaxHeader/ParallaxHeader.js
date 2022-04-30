@@ -1,18 +1,12 @@
 import React from "react"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-import * as styles from "./ParallaxHeader.module.css"
+import * as styles from "./ParallaxHeader.module.scss"
 
 const ParallaxHeader = props => {
-  const inlineStyles = {
-    backgroundImage: `url(${props.image.file.url})`,
-  }
   return (
-    <div className={styles.parallaxContainer} style={inlineStyles}>
-      {/* <img
-        alt='' 
-        src={props.image.file.url}
-        aria-hidden="true"
-      /> */}
+    <div className={styles.parallaxContainer}>
+      <GatsbyImage image={props.image} />
     </div>
   )
 }

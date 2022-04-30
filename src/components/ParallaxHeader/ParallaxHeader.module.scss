@@ -1,0 +1,10 @@
+.parallax-container {
+  height: 50vh;
+  background-attachment: fixed;
+  background-position: center;
+  & > div {
+    height: 50vh;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}

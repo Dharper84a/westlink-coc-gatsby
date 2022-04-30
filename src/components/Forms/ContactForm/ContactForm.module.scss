@@ -1,0 +1,40 @@
+@import '../../../common/styles/importer';
+
+.form {
+  width: 100%;
+  margin-top: 3rem;
+  @include respond-to('xsmall') {
+    width: 50%;
+    margin-top: 0;
+  }
+  @include respond-to('medium') {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+.formInput {
+  margin: 1rem 0;
+  * {
+    width: 100%;
+  }
+  label {
+    display: block;
+  }
+  input, textarea, select {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ababab;
+  }
+}
+
+.notice {
+  max-width: 400px;
+  margin: 0;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: $pastelGreen;
+}
+
+.accessHidden {
+  display:inline-block;
+}

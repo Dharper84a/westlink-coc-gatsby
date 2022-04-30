@@ -1,0 +1,49 @@
+@import '../../../common/styles/importer';
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 1rem 0;
+  figure {
+    width: 100%;
+    img {
+      border-radius: 0.5rem;
+    }
+  }
+  
+}
+
+.content {
+  width: 100%;
+  max-width: 100%;
+  span {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  h2 {
+    margin-top: 0;
+    font-size: 1.375rem;
+  }
+}
+
+.card-featured {
+  @extend .card;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 4rem;
+  
+  max-width: 100%;
+  margin-top: 0;
+  figure {
+    width: 100%;
+    
+  }
+  
+  @include respond-to('small') {
+    grid-template-columns: 1fr 3fr;
+    span {
+      margin-top: 0;
+    }
+  }
+}

@@ -1,0 +1,192 @@
+@import '../common/styles/importer';
+
+.content-with-media-column {
+  margin: 10rem 0;
+}
+
+.content-with-media-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 5rem;
+
+  @include respond-to('medium') {
+    grid-template-columns: 1fr 3fr;
+    & > div {
+      & > * {
+        margin-top: 0; // regardless of the tag we do not want a margin top on the first item of the rich text field
+      }
+    }
+  }
+}
+.content-and-sidebar {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 10rem;
+  margin: 0 0 4rem 0;
+  aside {
+    margin-top: 3rem;
+  }
+  @include respond-to('medium') {
+    grid-template-columns: 2fr 1fr;
+    aside {
+      margin-top: 0;
+    }
+  }
+}
+.upcoming-events-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10rem;
+  margin: 2.5rem 0 4rem 0;
+  @include respond-to('medium') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.cta-card-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 5rem;
+  margin: 4rem 0 4rem 0;
+  @include respond-to('medium') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.sidebar-page-container {
+  width: 100%;
+  height: 100%;
+  @include respond-to('medium') {
+    display: flex;
+  }
+}
+.page-container {
+  width: 100%;
+  height: 100%;
+  @include respond-to('medium') {
+    display: flex;
+  }
+}
+
+.page-content { 
+  width: 100%;
+  @include respond-to('medium') {
+    width: 66%;
+    margin-right: 4rem;
+  }
+}
+
+.page-sidebar {
+  width: 100%;
+  @include respond-to('medium') {
+    width: 33%;
+  }
+}
+
+.default-grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10rem;
+  @include respond-to('medium') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond-to('large') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.default-grid-item {
+  width: 100%;
+  min-height: 9.375rem;
+  margin: 0 0 1rem 0;
+  border-radius: 0.5rem;
+  h2 {
+    margin: 0.25rem 0;
+    font-size: 1.125rem;
+  }
+}
+.default-page-container {
+  padding-top: 4rem;
+  @include respond-to('small') {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 4rem;
+
+  }
+}
+
+.people-page-container {
+  padding-top: 4rem;
+  @include respond-to('small') {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 4rem;
+  }
+}
+
+.people-page-content {
+  h1 {
+    margin-top: 0;
+  }
+}
+.people-featured-person {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 2rem;
+  margin: 2rem 0 4rem 0;
+  h2 {
+    margin-top: 0;
+  }
+  img {
+    border-radius: 0.5rem;
+  }
+}
+
+.people-persons-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 4rem;
+  @include respond-to('large') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.people-person {
+  margin-bottom: 2rem;
+  header {
+    width: 9.375rem;
+    max-width: 9.375rem;
+    height: 11.75em;
+    border-radius: 0.5rem;
+    background-color: $lightGray;
+  }
+  span {
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  img {
+    border-radius: 0.5rem;
+  }
+}
+
+.stream-box {
+  margin: 0 0 4rem 0;
+}
+.video-page-container {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.default-page-media {
+  margin-bottom: 2rem;
+  img {
+    border-radius: 0.5rem;
+  }
+  
+}
+
+.default-page-content {
+  h1 {
+    margin-top: 0;
+  }
+}
