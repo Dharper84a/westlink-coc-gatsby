@@ -1,7 +1,8 @@
-import React, {useState, useRef, useCallback, useLayoutEffect} from 'react';
+import React, {useEffect, useState, useRef, useCallback, useLayoutEffect} from 'react';
 import { graphql } from 'gatsby';
 
-
+// Hooks
+import useYouTube from '../hooks/useYouTube';
 // Templates
 import {
   DefaultGridContainer,
@@ -11,58 +12,57 @@ import {
 // Components
 import Website from '../components/Layout/Website';
 import VideoCard from '../components/VideoCard/VideoCard';
+import VideoCardPlaceHolder from '../components/VideoCard/Placeholder';
 
 
-const Podcasts = ({data: {allContentfulVideoPodcast: data}}) => {
-  // const [setViewerHeight] = useState(0);
-  const [viewerWidth, setViewerWidth] = useState(0);
-  const videoRef = useRef();
+const Podcasts = () => {
 
+  const youTube = useYouTube();
+  const [videos, setVideos] = useState();
+  const [hasVideos, setHasVideos] = useState(false);
 
-  const hasPodcasts =
-    data.edges.length > 0 ? true : false
+  useEffect(() => {
+    youTube.getPlaylist({maxResults: 12}).then((res) => {
+      console.log(res);
+      setVideos(res);
+      // PLDo_r1N43g0GDBsE1_vQwA0TbYcU31TL8
+    });
+    // youTube.getVideos({maxResults: 12, type: 'video', videoDuration: 'medium'}).then((res) => {
+    //   setVideos(res);
+    // });
+  }, []);
 
-  const streamViewerWidth = useCallback(() => {
-    let element = videoRef.current;
-    if(element) {
-      return element.offsetWidth / 2;
+  useEffect(() => {
+    if(videos) {
+      setHasVideos(true);
     }
-  },[])
+  }, [videos]);
 
-  // const streamViewerHeight = useCallback(() => {
-  //   return viewerWidth * 0.5625;
-  // },[viewerWidth])
-
-  const setViewerSizes = useCallback(() => {
-    setViewerWidth(streamViewerWidth);
-    // setViewerHeight(streamViewerHeight);
-    if(viewerWidth > 0) {
-      // setViewerHeight(viewerWidth * 0.5625);
-    }
-  },[streamViewerWidth, viewerWidth]);
-
-  useLayoutEffect(() => {
-    setViewerSizes();
-    return () => {}
-  }, [setViewerSizes])
   return (
-    <Website meta={[]} title="Podcasts" header={true} footer={true}>
-      <main ref={videoRef}>
-        <h1>Podcasts</h1>
+    <Website meta={[]} title="Daily Devotional Podcasts" header={true} footer={true}>
+      <main>
+        <h1>Daily Devotional Podcasts</h1>
         <section>
-          {/* <VideoCard videoId="7ty-gUooWXI" width={viewerWidth} height={viewerHeight} /> */}
-        </section>
-        <section>
-          {hasPodcasts && (
+          {hasVideos ? (
             <DefaultGridContainer>
-              {data.edges.map((item, key) => {
+              {videos.items.map((item, key) => {
                 return (
                   <DefaultGridItem key={key}>
-                    <VideoCard {...item.node} />
+                    <VideoCard {...item} videoId={item.snippet.resourceId.videoId} title={item.snippet.title} />
                   </DefaultGridItem>
                 )
               })}
             </DefaultGridContainer>
+          ) : (
+            <DefaultGridContainer>
+              {new Array(6).fill(null).map((_, key) => {
+                return (
+                  <DefaultGridItem key={key}>
+                    <VideoCardPlaceHolder />
+                  </DefaultGridItem>
+                )
+              })}
+            </DefaultGridContainer> 
           )}
         </section>
 
@@ -72,21 +72,5 @@ const Podcasts = ({data: {allContentfulVideoPodcast: data}}) => {
     </Website>
   )
 }
-
-
-export const query = graphql`
-  {
-    allContentfulVideoPodcast {
-      edges {
-        node {
-          slug
-          title
-          videoId
-          contentful_id
-        }
-      }
-    }
-  }
-`
 
 export default Podcasts

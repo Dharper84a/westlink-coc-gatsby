@@ -79,11 +79,7 @@ export const query = graphql`
   {
     contentfulPageContact {
       title
-      contentful_id
-      headerImageDesktop {
-        gatsbyImageData
-      }
-      headerImageMobile {
+      image {
         description
         gatsbyImageData
       }
@@ -94,7 +90,12 @@ export const query = graphql`
         lon
       }
       metaData {
-        ...ComponentMeta
+        ... on ContentfulComponentMeta {
+          ...ComponentMeta
+        }
+        ... on ContentfulComponentMetaImage {
+          ...ComponentMetaImage
+        }
       }
     }
   }

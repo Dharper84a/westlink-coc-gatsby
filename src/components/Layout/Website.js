@@ -17,43 +17,55 @@ const Website = props => {
       : `${props.title} - ${websiteTitle}`
 
   const generateMetaTag = (meta, key) => {
+    console.log(meta);
 
-    const content = meta.content.content
-
-    var schema = {
+    const schema = {
       property: "",
-      content: content,
+      content: "",
     }
 
-    switch (meta.contentType) {
-      case "Title":
-        setHasPageTitle(true)
-        return (
-          <title>
-            {content === websiteTitle
-              ? content
-              : `${content} - ${websiteTitle}`}
-          </title>
-        )
-      case "Description":
-        return <meta {...{ name: "description", content: content }} />
-      case "Social Title":
-        schema.property = "og:title"
-        break
-      case "Social Description":
-        schema.property = "og:description"
-        break
-      case "Social Image":
-        schema.property = "og:image"
-        break
-      case "Social Image Alt":
-        schema.property = "og:image:alt"
-        break;
-      default:
-        return <></>
+    const metaType = meta?.internal?.type ? meta.internal.type : null;
+    
+    if(metaType === 'ContentfulComponentMeta') {
+      
+      var content = meta.content.content;
+      
+      switch (meta.contentType) {
+        case "Title":
+          setHasPageTitle(true)
+          return (
+            <title>
+              {content === websiteTitle
+                ? content
+                : `${content} - ${websiteTitle}`}
+            </title>
+          )
+        case "Description":
+          return <meta {...{ name: "description", content: content, key: key }} />
+        case "Social Title":
+          schema.property = "og:title"
+          break
+        case "Social Description":
+          schema.property = "og:description"
+          break
+        case "Social Image Alt":
+          schema.property = "og:image:alt";
+          break;
+        default:
+          return <></>
+      }
+    } else if(metaType === 'ContentfulComponentMetaImage') {
+       content = meta.image.gatsbyImageData.images.fallback.src;
+       schema.property = "og:image";
     }
 
-    return <meta {...schema} key={key} />
+    if(metaType) {
+      schema.content = content;
+
+      return <meta {...schema} key={key} />
+    }
+
+    
   }
 
   useEffect(() => {

@@ -22,7 +22,6 @@ export const query = graphql`
     contentfulPagePeople(slug: { eq: $slug }) {
       slug
       title
-      contentful_id
       image {
         description
         gatsbyImageData(
@@ -66,7 +65,12 @@ export const query = graphql`
         }
       }
       metaData {
-        ...ComponentMeta
+        ... on ContentfulComponentMeta {
+          ...ComponentMeta
+        }
+        ... on ContentfulComponentMetaImage {
+          ...ComponentMetaImage
+        }
       }
     }
   }

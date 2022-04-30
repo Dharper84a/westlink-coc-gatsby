@@ -11,6 +11,11 @@
 
   @include respond-to('medium') {
     grid-template-columns: 1fr 3fr;
+    & > div {
+      & > * {
+        margin-top: 0; // regardless of the tag we do not want a margin top on the first item of the rich text field
+      }
+    }
   }
 }
 .content-and-sidebar {
@@ -91,6 +96,7 @@
 .default-grid-item {
   width: 100%;
   min-height: 9.375rem;
+  margin: 0 0 1rem 0;
   border-radius: 0.5rem;
   h2 {
     margin: 0.25rem 0;

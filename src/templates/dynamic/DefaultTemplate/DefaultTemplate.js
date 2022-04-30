@@ -1,56 +1,15 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-
-import ContentfulRichText from "../../../components/ContentTypes/RichText"
-
-// Hooks
-import useWindowDimensions from "../../../hooks/useWindowDimensions"
-
-// Templates
-import {
-  DefaultPageContainer,
-  DefaultPageContent,
-  DefaultPageMedia,
-} from "../../Templates"
 
 // Components
 import Website from "../../../components/Layout/Website"
+import DefaultLayout from "../../../components/Layout/DefaultLayout/DefaultLayout"
 
 const DefaultPageTemplate = ({ data: { contentfulPageDefault: data } }) => {
-  const [image, setImage] = useState(null)
-  const { width } = useWindowDimensions()
-  
-  console.log(data)
-
-  useEffect(() => {
-    setImage(
-      width > 768
-        ? getImage(data.featuredImageDesktop)
-        : getImage(data.featuredImageMobile)
-    )
-  }, [width, data.featuredImageDesktop, data.featuredImageMobile])
-
   return (
     <Website meta={data.metaData} title={data.title} header={true} footer={true}>
       <main>
-        <DefaultPageContainer>
-          <DefaultPageMedia>
-            {image && (
-              <GatsbyImage
-                image={image}
-                alt={data.featuredImageDesktop?.description}
-              />
-            )}
-          </DefaultPageMedia>
-          <DefaultPageContent>
-            
-            <h1>{data.title}</h1>
-            <div>
-              <ContentfulRichText richText={data.pageContent} />
-            </div>
-          </DefaultPageContent>
-        </DefaultPageContainer>
+        <DefaultLayout {...data} />
       </main>
     </Website>
   )
@@ -62,11 +21,7 @@ export const query = graphql`
       slug
       title
       contentful_id
-      featuredImageDesktop {
-        description
-        gatsbyImageData
-      }
-      featuredImageMobile {
+      image {
         description
         gatsbyImageData
       }
@@ -74,7 +29,13 @@ export const query = graphql`
         raw
       }
       metaData {
-        ...ComponentMeta
+        ... on ContentfulComponentMeta {
+          ...ComponentMeta
+        }
+
+        ... on ContentfulComponentMetaImage {
+          ...ComponentMetaImage
+        }
       }
     }
   }
