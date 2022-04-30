@@ -6,7 +6,7 @@ const apiUrl = 'https://www.googleapis.com/youtube/v3/';
 const searchUrl = `https://www.googleapis.com/youtube/v3/search?channelId=${process.env.GATSBY_YOUTUBE_CHANNEL}&key=${process.env.GATSBY_GOOGLE_APIKEY}`
 const playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${process.env.GATSBY_GOOGLE_APIKEY}&part=snippet&playlistId=${process.env.GATSBY_PODCAST_PLAYLIST}`
 const standardParams = {
-  key: process.env.GOOGLE_APIKEY,
+  key: process.env.GATSBY_GOOGLE_APIKEY,
 }
 
 const getRequestParams = (payload, type = "search") => {
