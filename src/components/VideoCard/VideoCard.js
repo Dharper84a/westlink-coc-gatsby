@@ -7,14 +7,14 @@ const VideoCard = props => {
   return (
     <Fragment>
       <h2>{props.title}</h2>
-       <iframe
-       title={props.title}
-       className={styles.videoFrame}
-       width={props.width ? props.width : "384"}
-       height={props.height ? props.height : "216"}
-       src={videoSrc}
-       style={{maxWidth: props.width ? `${props.width}px` : '100%'}}
-     ></iframe>
+      <iframe
+         title={props.title}
+        className={styles.videoFrame}
+        width={props.width ? props.width : "384"}
+        height={props.height ? props.height : "216"}
+        src={videoSrc}
+        style={{maxWidth: props.width ? `${props.width}px` : '100%'}}
+      ></iframe>
     </Fragment>
    
   )

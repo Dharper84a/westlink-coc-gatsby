@@ -1,7 +1,8 @@
-import React, {useState, useRef, useCallback, useLayoutEffect} from 'react';
+import React, {useEffect, useState, useRef, useCallback, useLayoutEffect} from 'react';
 import { graphql } from 'gatsby';
 
-
+// Hooks
+import useYouTube from '../hooks/useYouTube';
 // Templates
 import {
   DefaultGridContainer,
@@ -11,58 +12,53 @@ import {
 // Components
 import Website from '../components/Layout/Website';
 import VideoCard from '../components/VideoCard/VideoCard';
+import VideoCardPlaceHolder from '../components/VideoCard/Placeholder';
 
 
-const Sermons = ({data: {allContentfulVideoSermons: data}}) => {
-  // const [setViewerHeight] = useState(0);
-  const [viewerWidth, setViewerWidth] = useState(0);
-  const videoRef = useRef();
+const Sermons = () => {
 
+  const youTube = useYouTube();
+  const [videos, setVideos] = useState();
+  const [hasVideos, setHasVideos] = useState(false);
 
-  const hasSermons =
-    data.edges.length > 0 ? true : false
+  useEffect(() => {
+    youTube.getVideos({maxResults: 12, type: 'video', videoDuration: 'long'}).then((res) => {
+      setVideos(res);
+    });
+  }, []);
 
-  const streamViewerWidth = useCallback(() => {
-    let element = videoRef.current;
-    if(element) {
-      return element.offsetWidth / 2;
+  useEffect(() => {
+    if(videos) {
+      console.log(videos);
+      setHasVideos(true);
     }
-  },[])
+  }, [videos]);
 
-  // const streamViewerHeight = useCallback(() => {
-  //   return viewerWidth * 0.5625;
-  // },[viewerWidth])
-
-  const setViewerSizes = useCallback(() => {
-    setViewerWidth(streamViewerWidth);
-    // setViewerHeight(streamViewerHeight);
-    if(viewerWidth > 0) {
-      // setViewerHeight(viewerWidth * 0.5625);
-    }
-  },[streamViewerWidth, viewerWidth]);
-
-  useLayoutEffect(() => {
-    setViewerSizes();
-    return () => {}
-  }, [setViewerSizes])
   return (
     <Website meta={[]} title="Past Sermons" header={true} footer={true}>
-      <main ref={videoRef}>
+      <main>
         <h1>Past Sermons</h1>
         <section>
-          {/* <VideoCard videoId="7ty-gUooWXI" width={viewerWidth} height={viewerHeight} /> */}
-        </section>
-        <section>
-          {hasSermons && (
+          {hasVideos ? (
             <DefaultGridContainer>
-              {data.edges.map((item, key) => {
+              {videos.items.map((item, key) => {
                 return (
                   <DefaultGridItem key={key}>
-                    <VideoCard {...item.node} />
+                    <VideoCard {...item} videoId={item.id.videoId} title={item.snippet.title} />
                   </DefaultGridItem>
                 )
               })}
             </DefaultGridContainer>
+          ) : (
+            <DefaultGridContainer>
+              {new Array(6).fill(null).map((_, key) => {
+                return (
+                  <DefaultGridItem key={key}>
+                    <VideoCardPlaceHolder />
+                  </DefaultGridItem>
+                )
+              })}
+            </DefaultGridContainer> 
           )}
         </section>
 
@@ -72,21 +68,5 @@ const Sermons = ({data: {allContentfulVideoSermons: data}}) => {
     </Website>
   )
 }
-
-
-export const query = graphql`
-  {
-    allContentfulVideoSermons {
-      edges {
-        node {
-          slug
-          title
-          videoId
-          contentful_id
-        }
-      }
-    }
-  }
-`
 
 export default Sermons

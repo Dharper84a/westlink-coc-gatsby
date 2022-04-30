@@ -7,8 +7,25 @@ export const fragmentComponentMeta = graphql`
     content {
       content
     }
+    internal {
+      type
+    }
   }
 `;
+
+export const fragmentComponentMetaImage = graphql`
+  fragment ComponentMetaImage on ContentfulComponentMetaImage {
+    title
+    image {
+      description
+      gatsbyImageData
+    }
+    internal {
+      type
+    }
+  }
+`;
+
 
 
 export const fragmentEvent = graphql`
