@@ -3,8 +3,8 @@ import React from "react"
 const headers = { "Content-Type": "application/json" }
 const apiUrl = 'https://www.googleapis.com/youtube/v3/';
 //https://www.googleapis.com/youtube/v3/playlistItems
-const searchUrl = `https://www.googleapis.com/youtube/v3/search?channelId=${process.env.YOUTUBE_CHANNEL}&key=${process.env.GOOGLE_APIKEY}`
-const playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${process.env.GOOGLE_APIKEY}&part=snippet&playlistId=${process.env.PODCAST_PLAYLIST}`
+const searchUrl = `https://www.googleapis.com/youtube/v3/search?channelId=${process.env.GATSBY_YOUTUBE_CHANNEL}&key=${process.env.GATSBY_GOOGLE_APIKEY}`
+const playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${process.env.GATSBY_GOOGLE_APIKEY}&part=snippet&playlistId=${process.env.GATSBY_PODCAST_PLAYLIST}`
 const standardParams = {
   key: process.env.GOOGLE_APIKEY,
 }
@@ -15,7 +15,7 @@ const getRequestParams = (payload, type = "search") => {
       return {
         ...standardParams,
         ...payload,
-        channelId: process.env.YOUTUBE_CHANNEL,
+        channelId: process.env.GATSBY_YOUTUBE_CHANNEL,
         eventType: "live",
         type: "video",
         part: 'snippet',
@@ -24,7 +24,7 @@ const getRequestParams = (payload, type = "search") => {
       return {
         ...standardParams,
         ...payload,
-        channelId: process.env.YOUTUBE_CHANNEL,
+        channelId: process.env.GATSBY_YOUTUBE_CHANNEL,
         order: "date",
         part: 'snippet',
       }
@@ -32,7 +32,7 @@ const getRequestParams = (payload, type = "search") => {
       return {
         ...standardParams,
         ...payload,
-        playlistId: process.env.PODCAST_PLAYLIST,
+        playlistId: process.env.GATSBY_PODCAST_PLAYLIST,
         part: 'snippet'
       }
     default:
