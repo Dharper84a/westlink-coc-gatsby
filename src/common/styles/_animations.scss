@@ -1,0 +1,79 @@
+
+.fx-mobile-drawer-open {
+  animation-name: fx-slideIn, fx-fadeIn;
+  animation-duration: 0.3s;
+  animation-direction: forwards;
+}
+
+.fx-mobile-drawer-close {
+  animation-name: fx-slideOut, fx-fadeOut;
+  animation-duration: 0.3s;
+  animation-direction: forwards;
+  
+}
+
+.fx-mobile-icon-open {
+  animation-name: fx-rotate-cc;
+  animation-duration: 1s;
+  animation-direction: forwards;
+}
+
+.fx-mobile-icon-close {
+  animation-name: fx-rotate-c;
+  animation-duration: 1s;
+  animation-direction: forwards;
+}
+
+@keyframes fx-slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fx-slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fx-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fx-fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fx-rotate-c {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fx-rotate-cc {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}

@@ -27,6 +27,7 @@ const getRequestParams = (payload, type = "search") => {
         channelId: process.env.GATSBY_YOUTUBE_CHANNEL,
         order: "date",
         part: 'snippet',
+        videoEmbeddable: true,
       }
     case "playlistItems":
       return {

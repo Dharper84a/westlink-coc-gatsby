@@ -10,7 +10,7 @@ const websiteTitle = "Westlink Church of Christ"
 const Website = props => {
   const [pageUrl, setPageUrl] = useState("Loading...")
   const [hasPageTitle, setHasPageTitle] = useState(false)
-
+console.log(props);
   const defaultTitle =
     props.title === websiteTitle
       ? props.title

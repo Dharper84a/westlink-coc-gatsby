@@ -23,9 +23,9 @@ const IndexPage = ({ data: { contentfulHomepage: data } }) => {
   return (
     <Website meta={data.metaData} title={data.title} header={true} footer={true}>
       <main>
-        <BackgroundImage Tag="section" {...bgImage} preserveStackingContext>
+        {/* <BackgroundImage Tag="section" {...bgImage} preserveStackingContext>
           <ParallaxHeader image={image} />
-        </BackgroundImage>
+        </BackgroundImage> */}
         {/* <ParallaxHeader imageUrl={data.mainImage.file.url} /> */}
 
         <section>
