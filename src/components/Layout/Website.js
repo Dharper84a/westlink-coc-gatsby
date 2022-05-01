@@ -10,14 +10,14 @@ const websiteTitle = "Westlink Church of Christ"
 const Website = props => {
   const [pageUrl, setPageUrl] = useState("Loading...")
   const [hasPageTitle, setHasPageTitle] = useState(false)
-console.log(props);
+
   const defaultTitle =
     props.title === websiteTitle
       ? props.title
       : `${props.title} - ${websiteTitle}`
 
   const generateMetaTag = (meta, key) => {
-    console.log(meta);
+  
 
     const schema = {
       property: "",

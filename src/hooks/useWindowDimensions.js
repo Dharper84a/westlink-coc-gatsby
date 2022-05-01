@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export default function useWindowDimensions() {
+export default function useWindowDimensions(ref = null) {
 
   const hasWindow = typeof window !== 'undefined';
 
@@ -27,5 +27,18 @@ export default function useWindowDimensions() {
     }
   }, [hasWindow, memo]);
 
+  
   return windowDimensions;
+}
+
+export const useElementDimensions = (ref) => {
+  const [dimensions, setDimensions] = useState({width: 0, height: 0});
+
+  useEffect(() => {
+    if(ref) {
+      setDimensions({width: ref.current.offsetWidth, height: ref.current.offsetHeight});
+    }
+  }, [ref])
+
+  return dimensions;
 }
