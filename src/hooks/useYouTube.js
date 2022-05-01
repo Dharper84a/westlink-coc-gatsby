@@ -1,10 +1,7 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 const headers = { "Content-Type": "application/json" }
 const apiUrl = 'https://www.googleapis.com/youtube/v3/';
-//https://www.googleapis.com/youtube/v3/playlistItems
-const searchUrl = `https://www.googleapis.com/youtube/v3/search?channelId=${process.env.GATSBY_YOUTUBE_CHANNEL}&key=${process.env.GATSBY_GOOGLE_APIKEY}`
-const playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${process.env.GATSBY_GOOGLE_APIKEY}&part=snippet&playlistId=${process.env.GATSBY_PODCAST_PLAYLIST}`
 const standardParams = {
   key: process.env.GATSBY_GOOGLE_APIKEY,
 }
@@ -45,28 +42,25 @@ const getRequestParams = (payload, type = "search") => {
 
 const buildUrl = (params, type) => {
   const url = new URL(`${apiUrl}${type}`);
-  // if(type === 'search') {
-  //   url = new URL(`${apiUrl}${type}`);
-  // } else if(type === 'playlistItems') {
-  //   url = new URL(playlistItemsUrl);
-  // }
-
   url.search = new URLSearchParams(params)
-
-  // console.log(url);
   return url
 }
 
 const doRequest = async (params, type) => {
   const url = buildUrl(params, type)
 
-  return fetch(url, headers)
-    .then(response => {
-      if (response.ok) return response.json()
-    })
-    .then(response => {
-      return response
-    })
+  if(typeof window != 'undefined') {
+    return fetch(url, headers)
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(response => {
+        return response
+      })
+  } else {
+    return new Promise();
+  }
+
 }
 const getLiveBroadcast = async (payload = {}) => {
   const params = getRequestParams(payload, "live")
@@ -85,9 +79,24 @@ const getPlaylist = async (payload = {}) => {
 }
 
 export default function useYouTube(type = "channel") {
+  const [hookProperties, setHookProperties] = useState({
+    getLive: () => {},
+    getVideos: () => {},
+    getPlaylist: () => {}
+  });
+
+  useEffect(() => {
+    setHookProperties(
+      {
+        getLive: getLiveBroadcast,
+        getVideos: getVideoList,
+        getPlaylist: getPlaylist,
+      }
+    );
+  }, []);
   return {
     getLive: getLiveBroadcast,
     getVideos: getVideoList,
     getPlaylist: getPlaylist,
-  }
+  };
 }

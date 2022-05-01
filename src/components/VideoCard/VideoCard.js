@@ -9,7 +9,10 @@ const VideoCard = props => {
   const [aspectHeight, setAspectHeight] = useState(0);
 
   const videoSrc = `https://youtube.com/embed/${props.videoId}`
-  
+ 
+  const parser = new DOMParser();
+  const title = parser.parseFromString(props.title);
+
   useEffect(() => {
     let value = containerDimensions.width * 0.56;
     setAspectHeight(value);
@@ -17,7 +20,7 @@ const VideoCard = props => {
   }, [containerDimensions]);
   return (
     <div ref={videoContainerRef} className={styles.videoCardContainer}>
-      <h2>{props.title}</h2>
+      <h2>{title}</h2>
       {props.maxWidth ? (
         <iframe
           title={props.title}

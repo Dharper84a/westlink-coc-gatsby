@@ -45,7 +45,7 @@ const Header = (props) => {
 
         <nav className={styles.navigation}>
           <div className={styles.mobileNavigation}>
-            <button onClick={onMobileButtonClickHandler}>
+            <button onClick={onMobileButtonClickHandler} aria-label="Toggle mobile navigation">
               <FontAwesomeIcon icon={isOpen ? faXmark : faBars} className={mobileIconAnimation} />
             </button>
             { isOpen &&
