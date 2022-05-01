@@ -94,7 +94,7 @@ const Live = () => {
        
           {siteStore.isServiceActive ? (
             isStreaming ? (
-              <VideoCard videoId={youTubeLiveVideo.items[0].id.videoId} width={viewerWidth} height={viewerHeight} />
+              <VideoCard videoId={youTubeLiveVideo.items[0].id.videoId} width={viewerWidth} height={viewerHeight} maxWidth={true}/>
             ) : (
               <p>The live service should be starting shortly. This page will update once the live service begins.</p>
             )
