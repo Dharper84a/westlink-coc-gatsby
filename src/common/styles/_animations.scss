@@ -24,6 +24,23 @@
   animation-direction: forwards;
 }
 
+.fx-progress-undetermined {
+  animation-name: fx-progressSlideRepeat;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fx-progressSlideRepeat {
+ 0% {
+   width: 0%;
+ }
+ 50% {
+   width: 100%;
+ }
+ 100% {
+  width: 0%;
+ }
+}
 @keyframes fx-slideIn {
   from {
     transform: translateX(100%);

@@ -16,7 +16,7 @@ const VideoCard = props => {
     
   }, [containerDimensions]);
   return (
-    <div ref={videoContainerRef}>
+    <div ref={videoContainerRef} className={styles.videoCardContainer}>
       <h2>{props.title}</h2>
       {props.maxWidth ? (
         <iframe
