@@ -30,6 +30,70 @@
   animation-iteration-count: infinite;
 }
 
+.fx-desktop-submenu-fadein {
+  animation-name: fx-fadeIn;
+  animation-duration: 0.3s;
+  animation-direction: forwards;
+}
+
+.fx-desktop-submenu-fadeout {
+  animation-name: fx-fadeOut;
+  animation-duration: 0.3s;
+  animation-direction: forwards;
+}
+
+.fx-cta-card-slidein {
+  &:first-of-type {
+    animation-name: fx-ctaSlideInLeft;
+    animation-duration: 0.75s;
+    animation-direction: forwards;
+  }
+  &:last-of-type {
+    animation-name: fx-ctaSlideInRight;
+    animation-duration: 0.75s;
+    animation-direction: forwards;
+  }
+ 
+}
+
+@keyframes fx-ctaSlideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(10%);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(-5%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes fx-ctaSlideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(-10%);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(5%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
 @keyframes fx-progressSlideRepeat {
  0% {
    width: 0%;
@@ -74,6 +138,7 @@
   }
   to {
     opacity: 0;
+    display: none;
   }
 }
 

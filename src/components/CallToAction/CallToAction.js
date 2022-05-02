@@ -6,7 +6,7 @@ import * as styles from "./CallToAction.module.scss"
 const CallToAction = props => {
   const image = getImage(props.image)
   return (
-    <div className={styles.ctaCard}>
+    <div className={`${styles.ctaCard} fx-cta-card-slidein`}>
       <GatsbyImage image={image} alt={props.image?.description} className={styles.ctaImage}/>
       <div className={styles.ctaCardContent}>
         <h2>{props.title}</h2>
