@@ -35,6 +35,7 @@ export const fragmentEvent = graphql`
           raw
         }
         image {
+          description
           gatsbyImageData(
             width: 600,
             height: 200,

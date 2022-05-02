@@ -21,7 +21,7 @@ const EventCard = (event) => {
         
           <GatsbyImage 
             image={images[0]}
-            alt="event image"
+            alt={event.image.description ? event.image.descripiton : ""}
           />
 
         }
@@ -29,7 +29,7 @@ const EventCard = (event) => {
         
         <h3>{event.title}</h3>
         <ExcerptFromRichText richText={event.content} />
-        <Link to={`/event/${event.slug}`}>Details</Link>
+        <Link to={`/event/${event.slug}`} title={`More information about ${event.title}`}>Details</Link>
       </div>
   );
 }

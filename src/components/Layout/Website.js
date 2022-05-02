@@ -75,7 +75,8 @@ const Website = props => {
     <SiteContext.Consumer>
       {site => (
         <Fragment>
-          <Helmet>
+          <Helmet htmlAttributes={{lang: 'en'}}>
+            
             <meta charSet="utf-8" />
 
             {props.meta.map((meta, key) => {
