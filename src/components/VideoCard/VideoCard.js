@@ -11,7 +11,7 @@ const VideoCard = props => {
   const videoSrc = `https://youtube.com/embed/${props.videoId}`
  
   const parser = new DOMParser();
-  const title = parser.parseFromString(props.title);
+  const title = parser.parseFromString(props.title, 'text/html');
 
   useEffect(() => {
     let value = containerDimensions.width * 0.56;
