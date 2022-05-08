@@ -17,6 +17,7 @@ function escapeHtml(text) {
 
 function decodeHtml(str)
 {
+  if(typeof str === 'undefined') return '';
     var map =
     {
         '&amp;': '&',
