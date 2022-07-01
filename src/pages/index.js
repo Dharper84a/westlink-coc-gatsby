@@ -1,31 +1,60 @@
 import React from "react"
-import { graphql } from "gatsby"
-
-import { convertToBgImage } from "gbimage-bridge"
-import BackgroundImage from "gatsby-background-image"
-
-// Templates
-import {
-  CallToActionContainerTemplate,
-  UpcomingEventsContainerTemplate,
-} from "../templates/Templates"
+// import { graphql } from "gatsby"
 
 // Components
-import Website from "../components/Layout/Website"
+import Meta from "../components/Meta"
+import TemplateHomepage from "../templates/Homepage"
 
-import ParallaxHeader from "../components/ParallaxHeader/ParallaxHeader"
-import CallToAction from "../components/CallToAction/CallToAction"
-import EventCard from "../components/Cards/EventCard/EventCard"
-
-const IndexPage = ({ data: { contentfulHomepage: data } }) => {
-  const image = data.mainImage.gatsbyImageData
-  const bgImage = convertToBgImage(image)
+const IndexPage = ({data}) => {
   return (
-    <Website meta={data.metaData} title={data.title} header={true} footer={true}>
+    <>
+    <Meta title="Westlink Church of Christ" />
+    <TemplateHomepage data={data} />
+    </>
+  )
+}
+
+// export const query = graphql`
+//   {
+//     contentfulHomepage {
+//       title
+//       mainImage {
+//         description
+//         gatsbyImageData(
+//           width: 1920
+//           placeholder: BLURRED
+//           formats: [AUTO, WEBP]
+//         )
+//       }
+//       callToActionBoxes {
+//         title
+//         content
+//         image {
+//           description
+//           gatsbyImageData(
+//             aspectRatio: 1
+//             width: 475
+//             placeholder: BLURRED
+//             formats: [AUTO, WEBP]
+//           )
+//         }
+//       }
+//       events {
+//         ...Event
+//       }
+//       metaData {
+//         ...ComponentMeta
+//       }
+//     }
+//   }
+// `
+
+export default IndexPage
+
+
+/*
+<Website meta={data.metaData} title={data.title} header={true} footer={true}>
       <main>
-        {/* <BackgroundImage Tag="section" {...bgImage} preserveStackingContext>
-          <ParallaxHeader image={image} />
-        </BackgroundImage> */}
         <ParallaxHeader image={image} />
 
         <section>
@@ -46,42 +75,4 @@ const IndexPage = ({ data: { contentfulHomepage: data } }) => {
         </section>
       </main>
     </Website>
-  )
-}
-
-export const query = graphql`
-  {
-    contentfulHomepage {
-      title
-      mainImage {
-        description
-        gatsbyImageData(
-          width: 1920
-          placeholder: BLURRED
-          formats: [AUTO, WEBP]
-        )
-      }
-      callToActionBoxes {
-        title
-        content
-        image {
-          description
-          gatsbyImageData(
-            aspectRatio: 1
-            width: 475
-            placeholder: BLURRED
-            formats: [AUTO, WEBP]
-          )
-        }
-      }
-      events {
-        ...Event
-      }
-      metaData {
-        ...ComponentMeta
-      }
-    }
-  }
-`
-
-export default IndexPage
+*/

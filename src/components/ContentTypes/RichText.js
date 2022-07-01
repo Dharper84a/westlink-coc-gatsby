@@ -1,4 +1,5 @@
-import React from 'react'
+import * as React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 // import slugify from '@sindresorhus/slugify'
 
@@ -6,6 +7,25 @@ import { INLINES, BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
+const Bold = ({children}) => <span className="bold">{children}</span>
+const Text = ({children}) => <p>{children}</p>
+
+const EmbeddedAsset = ({node}) => {
+  return <pre><code>{JSON.stringify(node, null, 2)}</code></pre>
+}
+
+// const options ={
+//   renderMark: {
+//     [MARKS.BOLD]: text => <Bold>{text}</Bold>
+//   },
+//   renderNode: {
+//     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+
+//     [BLOCKS.EMBEDDED_ASSET]: node => <EmbeddedAsset node={node} />,
+//   }
+// }
+
+// renderRichText(node.bodyRichText, options);
 // const createJumpLink = (children) => {
 //   return (
 //     <a
@@ -25,13 +45,15 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 //   )
 // }
 
+var entryLinks = [];
+
 const options = {
   renderMark: {
-    [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
-    [MARKS.ITALIC]: (text) => <i className="font-italic">{text}</i>,
-    [MARKS.UNDERLINE]: (text) => <u className="underline">{text}</u>,
+    [MARKS.BOLD]: (text) => <b>{text}</b>,
+    [MARKS.ITALIC]: (text) => <i>{text}</i>,
+    [MARKS.UNDERLINE]: (text) => <u>{text}</u>,
     [MARKS.CODE]: (text) => (
-      <code className="font-mono px-1 py-2 mx-1 bg-gray-100 rounded text-sm">
+      <code>
         {text}
       </code>
     ),
@@ -44,6 +66,9 @@ const options = {
         {children}
       </a>
     ),
+    [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+      return <span>{children}</span>
+    },
     [BLOCKS.HEADING_1]: (node, children) => (
       <h2>
         {children}
@@ -78,28 +103,28 @@ const options = {
     ),
 
     [BLOCKS.OL_LIST]: (node, children) => (
-      <ol className="list-decimal pl-4">{children}</ol>
+      <ol>{children}</ol>
     ),
     [BLOCKS.UL_LIST]: (node, children) => (
-      <ul className="list-disc pl-4">{children}</ul>
+      <ul>{children}</ul>
     ),
 
     [BLOCKS.LIST_ITEM]: (node, children) => (
-      <li className="mb-1">{children}</li>
+      <li>{children}</li>
     ),
     [BLOCKS.PARAGRAPH]: (node, children) => {
       if (node.content[0].value === '') {
         return <br />
       } else {
-        return <p className="leading-loose">{children}</p>
+        return <p>{children}</p>
       }
     },
     [BLOCKS.QUOTE]: (children) => (
-      <blockquote className="border-l-4 border-brand-primary bg-gray-50 p-3 rounded font-bold my-6">
+      <blockquote>
         <>"{children.content[0].content[0].value}"</>
       </blockquote>
     ),
-    [BLOCKS.HR]: () => <hr className="mb-6" />,
+    [BLOCKS.HR]: () => <hr />,
     [BLOCKS.EMBEDDED_ASSET]: (node) => {
       const { gatsbyImageData, description } = node.data.target
 
@@ -107,7 +132,6 @@ const options = {
         <GatsbyImage
           image={getImage(gatsbyImageData)}
           alt={description}
-          className="mb-10"
         />
       )
     },
@@ -115,6 +139,32 @@ const options = {
 }
 
 const ContentfulRichText = ({ richText }) => {
+
+  
+
+  const entryData = useStaticQuery(graphql`
+    query entryLinks {
+      allContentfulEntry {
+        edges {
+          node {
+            ... on ContentfulHomepage {
+              slug
+              contentful_id
+            }
+            ... on ContentfulPage {
+              slug
+              contentful_id
+            }
+          }
+        }
+      }
+    }
+  `)
+  
+  React.useEffect(() => {
+    console.log(entryData)
+  }, [entryData])
+
   return <div>{renderRichText(richText, options)}</div>
 }
 

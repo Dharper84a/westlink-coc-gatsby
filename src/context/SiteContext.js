@@ -1,12 +1,55 @@
 import React, { useState,useEffect } from 'react';
+import { faBrush, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const defaultState = {
   isServiceActive: false,
+  switchTheme: () => {},
+  theme: 'light',
+  themeIcon: null,
 }
 
 const SiteContext = React.createContext(defaultState)
 
 const SiteProvider = (props) => {
+  // THEME
+  const [currentTheme, setCurrentTheme] = useState('light');
+  const [themeIcon, setThemeIcon] = useState(faBrush);
+
+  const onSwitchThemeHandler = () => {
+    let newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    setCurrentTheme(newTheme);
+  }
+
+  useEffect(() => {
+    if(
+      !currentTheme ||
+      typeof window === 'undefined'
+    ) {
+      return () => {}
+    }
+
+    // let newThemeIcon = currentTheme === 'light' ? faMoon : faSun;
+
+    window.localStorage.setItem('theme', currentTheme);
+    // setThemeIcon(newThemeIcon);
+
+    return () => {}
+  }, [currentTheme])
+
+  useEffect(() => {
+    if(typeof window === 'undefined') return () => {}
+
+    let storedTheme = window.localStorage.getItem('theme');
+    
+    if(storedTheme) setCurrentTheme(storedTheme);
+
+    return () => {}
+  }, []);
+
+  // END - THEME
+
+  // SERVICE CHECKER
   const [isServiceActive, setIsServiceActive] = useState(false)
 
   const handleIsServiceActive = () => {
@@ -36,7 +79,10 @@ const SiteProvider = (props) => {
   return (
     <SiteContext.Provider
       value={{
-        isServiceActive
+        isServiceActive,
+        switchTheme: onSwitchThemeHandler,
+        theme: currentTheme,
+        themeIcon, themeIcon,
       }}
     >
       {props.children}

@@ -1,8 +1,16 @@
 import React from 'react';
-import "./src/common/styles/global.scss";
 
+import Website from './src/Website';
+// import { ThemeProvider } from 'styled-components';
+import "./src/common/styles/global.css";
+
+// import {theme} from './src/common/styles/theme';
 import {SiteProvider} from './src/context/SiteContext';
 
 export const wrapRootElement = ({element}) => (
-  <SiteProvider>{element}</SiteProvider>
+    <SiteProvider>
+      <Website>
+        {element}
+      </Website>
+    </SiteProvider>
 )
